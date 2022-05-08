@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0"
+	name="igs-karaf-features-${project.version}">
+
+	<repository>mvn:eu.tecfox.cloud/igs-karaf-features/1.0.0/xml/features</repository>
+
+	<feature name='igs-berkeleydb' version='${project.version}'>
+		<bundle>mvn:eu.tecfox.cloud/igs-core-bundle/${project.version}</bundle>
+		<bundle>mvn:eu.tecfox.cloud/igs-core-bdb/${project.version}</bundle>
+		<bundle>mvn:eu.tecfox.cloud/igs-service-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-admin' version='${project.version}'>
+		<feature>igs-berkeleydb</feature>
+		<bundle>mvn:eu.tecfox.cloud/igs-admin-bundle/${project.version}</bundle>
+	</feature>
+
+</features>

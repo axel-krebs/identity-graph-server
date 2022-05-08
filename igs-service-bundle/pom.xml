@@ -1,0 +1,73 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>eu.tecfox.cloud</groupId>
+		<artifactId>igs</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-service-bundle</artifactId>
+
+	<packaging>bundle</packaging>
+
+	<name>IGS :: Authentication Service</name>
+
+	<description>Provide OAuth compatible authentication service.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<igs.core.version>1.0.0</igs.core.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>eu.tecfox.cloud</groupId>
+			<artifactId>igs-core-bundle</artifactId>
+			<version>${igs.core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.aries.blueprint</groupId>
+			<artifactId>blueprint-maven-plugin-annotation</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
+		<finalName>IGS-Auth-Service</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>IGS-Auth-Service</Bundle-SymbolicName>
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
+						<Private-Package>eu.tecfox.cloud.services.impl</Private-Package>
+						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>
