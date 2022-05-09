@@ -24,12 +24,7 @@
 
 	<dependencies>
 
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi.core</artifactId>
-		</dependency>
-
-</dependencies>
+	</dependencies>
 
 	<build>
 
@@ -47,6 +42,7 @@
 				<configuration>
 					<instructions>
 						<Bundle-SymbolicName>IGS-Core</Bundle-SymbolicName>
+						<Bundle-Activator>eu.tecfox.cloud.identity.impl.CoreBundleActivator</Bundle-Activator>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
 						<Private-Package>eu.tecfox.cloud.identity.impl</Private-Package>
 						<Export-Package>

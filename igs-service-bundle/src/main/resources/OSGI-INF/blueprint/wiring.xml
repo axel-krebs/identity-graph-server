@@ -11,17 +11,23 @@
         http://aries.apache.org/xmlns/transactions/v2.0.0 https://aries.apache.org/xmlns/transactions/v2.0.0
         http://aries.apache.org/xmlns/jpa/v2.0.0 https://aries.apache.org/xmlns/jpa/v2.0.0">
 
-	<cm:property-placeholder
-		persistent-id="eu.tecfox.cloud.authentication" update-strategy="reload" />
+	<cm:property-placeholder persistent-id="eu.tecfox.cloud.authentication"
+		update-strategy="reload" />
 
 	<reference id="identityService_REF"
-		interface="eu.tecfox.cloud.identity.api.IdentityService"
-		availability="optional" />
+		interface="eu.tecfox.cloud.identity.api.IdentityService" availability="optional" />
 
-	<bean id="authenticationServiceImpl"
-		class="eu.tecfox.cloud.services.impl.AuthenticationServiceImpl"
-		ext:field-injection="true">
+	<bean id="authenticationService_Bean"
+		class="eu.tecfox.cloud.services.impl.AuthenticationServiceImpl" ext:field-injection="true">
 		<property name="identService" ref="identityService_REF" />
 	</bean>
-	
+
+	<!-- The Hazelcast cache is provided by Karaf Cellar; i.o. to use another caching mechanism, this configuration 
+		could be outsourced to a OSGi fragment e.g. -->
+	<reference-list id="hazelcastServicesList" availability="optional"
+		activation="eager" interface="com.hazelcast.osgi.HazelcastOSGiService">
+		<reference-listener ref="authenticationService_Bean"
+			bind-method="bindHazelcastService" unbind-method="unbindHazelcastService" />
+	</reference-list>
+
 </blueprint>

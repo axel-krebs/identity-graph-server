@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<igs.core.version>1.0.0</igs.core.version>
+		<hazelcast.version>3.12.8</hazelcast.version>
 	</properties>
 
 	<dependencies>
@@ -32,15 +33,11 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi.core</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.aries.blueprint</groupId>
-			<artifactId>blueprint-maven-plugin-annotation</artifactId>
-			<scope>runtime</scope>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-all</artifactId>
+			<version>${hazelcast.version}</version>
+			<!-- scope 'compile' since at runtime the OSGI service will be exported by Apache Karaf Cellar. -->
+			<scope>compile</scope>
 		</dependency>
 
 	</dependencies>

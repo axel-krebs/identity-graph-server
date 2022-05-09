@@ -1,15 +1,16 @@
 package eu.tecfox.cloud.identity.api;
 
-public class Identity {
+public interface Identity {
 	
 	enum Kind {
 		PERSON,
-		MACHINE,
+		GROUP,
 		AVATAR,
-		PROGRAM,
+		PROCESS,
+		NODE
 	}
 	
-	String id;
+	Kind getKind();
 	
-	
+	SystemUniqueId getId();
 }

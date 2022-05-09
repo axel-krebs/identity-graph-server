@@ -8,6 +8,7 @@
 		<bundle>mvn:eu.tecfox.cloud/igs-core-bundle/${project.version}</bundle>
 		<bundle>mvn:eu.tecfox.cloud/igs-core-bdb/${project.version}</bundle>
 		<bundle>mvn:eu.tecfox.cloud/igs-service-bundle/${project.version}</bundle>
+		<!-- Memento: required features of Karaf assembly defined in plugin! -->
 	</feature>
 
 	<feature name='igs-admin' version='${project.version}'>

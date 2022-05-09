@@ -13,10 +13,13 @@
 
 	<cm:property-placeholder
 		persistent-id="eu.tecfox.cloud.core" update-strategy="reload">
-		
+		<cm:default-properties>
+			<cm:property name="realm.name" value="INVALID" />
+		</cm:default-properties>
 	</cm:property-placeholder>
 		
 	<bean id="identService_Bean" class="eu.tecfox.cloud.identity.impl.bdb.IdentityServiceImpl">
+		<property name="realmName" value="{{realm.name}}"></property>
 	</bean>
 
 	<service id="identService" ref="identService_Bean"

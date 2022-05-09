@@ -37,11 +37,6 @@
 			<version>${berkeleydb.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi.core</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -61,7 +56,8 @@
 					<instructions>
 						<Bundle-SymbolicName>IGS-Core-BerkeleyDB</Bundle-SymbolicName>
 						<Fragment-Host>IGS-Core</Fragment-Host>
-						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
+							be used here.. -->
 						<Private-Package>eu.tecfox.cloud.persistence.bdb,</Private-Package>
 						<Export-Package>eu.tecfox.cloud.identity.impl.bdb.*
 						</Export-Package>

@@ -47,6 +47,8 @@
 			<artifactId>igs-service-bundle</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		
+		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
 
 	</dependencies>
 
@@ -102,11 +104,14 @@
 							<descriptors>
 								<descriptor>file:${project.build.directory}/feature/features.xml</descriptor>
 							</descriptors>
+							<features>
+								<feature>log</feature>
+							</features>
 							<!-- <enableGeneration>false</enableGeneration> -->
 							<!-- <aggregateFeatures>true</aggregateFeatures> -->
 							<!-- <markRuntimeScopeAsDependency>true</markRuntimeScopeAsDependency> -->
 							<!-- We must import trans. dep. because Jakarta libs not available in Karaf yet! -->
-							<!-- <includeTransitiveDependency>false</includeTransitiveDependency> -->
+							<!-- <includeTransitiveDependency>true</includeTransitiveDependency> -->
 							<!-- <includeProjectArtifact>true</includeProjectArtifact> -->
 							<!-- <failOnDependencyChange>false</failOnDependencyChange> -->
 							<!-- <checkDependencyChange>true</checkDependencyChange> -->
