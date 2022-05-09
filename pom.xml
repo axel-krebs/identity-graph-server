@@ -15,8 +15,9 @@
 
 	<modules>
 		<module>igs-core-bundle</module>
+		<!-- fragment, quasi implementation of core API. -->
 		<module>igs-core-bdb</module>
-		<module>igs-service-bundle</module>
+		<module>igs-auth-bundle</module>
 		<module>igs-admin-bundle</module>
 	</modules>
 
