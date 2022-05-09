@@ -10,13 +10,13 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-admin-bundle</artifactId>
+	<artifactId>igs-core-backend-neo4j-fragment</artifactId>
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Admin</name>
+	<name>IGS :: Core :: Neo4J</name>
 
-	<description>Provide a rich UI for identity management.</description>
+	<description>Build a backend for the graph engine</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,24 +24,22 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-core-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Web-Admin</finalName>
-		
+		<finalName>IGS-Core-Backend-Neo4J</finalName>
+
 		<sourceDirectory>src/main/java</sourceDirectory>
 
 		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<release>${java.version}</release>
-				</configuration>
-			</plugin>
 
 			<plugin>
 				<groupId>org.apache.felix</groupId>
@@ -49,11 +47,12 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-SymbolicName>IGS-Admin</Bundle-SymbolicName>
-						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
-						<Private-Package>eu.tecfox.cloud.web.impl</Private-Package>
-						<Export-Package>
-							eu.tecfox.cloud.web.api;version="${project.version}"
+						<Bundle-SymbolicName>IGS-Core-Neo4J</Bundle-SymbolicName>
+						<Fragment-Host>IGS-Core</Fragment-Host>
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
+							be used here.. -->
+						<Private-Package>eu.tecfox.cloud.persistence.neo4j,</Private-Package>
+						<Export-Package>eu.tecfox.cloud.identity.impl.neo4j.*
 						</Export-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 					</instructions>

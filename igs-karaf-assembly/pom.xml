@@ -9,7 +9,7 @@
 		<artifactId>igs</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	
+
 	<packaging>karaf-assembly</packaging>
 
 	<artifactId>igs-karaf-assembly</artifactId>
@@ -19,7 +19,7 @@
 	<description>Assemble the Karaf runtime.</description>
 
 	<properties>
-		<!--  -->
+		<!-- -->
 	</properties>
 
 	<dependencies>
@@ -39,7 +39,7 @@
 	</dependencies>
 
 	<build>
-	
+
 		<finalName>${project.name}</finalName>
 
 		<resources>
@@ -137,20 +137,21 @@
 
 					</features>
 					<bootFeatures>
-					
+
 						<!-- Aries container used by IGS bundles -->
 						<bootFeature>aries-blueprint</bootFeature>
 						<bootFeature>aries-proxy</bootFeature>
-						
+
 						<!-- Karaf Cellar used for IGS cluster -->
 						<bootFeature>cellar</bootFeature>
-						
-						<bootFeature>igs-berkeleydb</bootFeature>
-						
+
+						<bootFeature>igs-auth-service</bootFeature>
+						<!-- <bootFeature>igs-web-master</bootFeature> -->
+
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 						<!-- <bootFeature>scr</bootFeature> -->
-						
+
 						<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
 							management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
 						<bootFeature>standard</bootFeature>

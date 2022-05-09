@@ -36,7 +36,8 @@
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast-all</artifactId>
 			<version>${hazelcast.version}</version>
-			<!-- scope 'compile' since at runtime the OSGI service will be exported by Apache Karaf Cellar. -->
+			<!-- scope 'compile' since at runtime the OSGI service will be exported by Apache Karaf Cellar. The 
+				same way the version must be regareded! -->
 			<scope>compile</scope>
 		</dependency>
 

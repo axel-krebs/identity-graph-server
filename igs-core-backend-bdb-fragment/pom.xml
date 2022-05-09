@@ -10,7 +10,7 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-core-bdb</artifactId>
+	<artifactId>igs-core-backend-bdb-fragment</artifactId>
 
 	<packaging>bundle</packaging>
 
@@ -42,7 +42,7 @@
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Core-Fragment-BDB</finalName>
+		<finalName>IGS-Core-Backend-BDB</finalName>
 
 		<sourceDirectory>src/main/java</sourceDirectory>
 

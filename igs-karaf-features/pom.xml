@@ -32,7 +32,7 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-core-bdb</artifactId>
+			<artifactId>igs-core-backend-bdb-fragment</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
