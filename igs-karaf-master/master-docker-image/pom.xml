@@ -17,17 +17,17 @@
 
 	<parent>
 		<groupId>eu.tecfox.cloud</groupId>
-		<artifactId>igs</artifactId>
+		<artifactId>igs-karaf-master</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-karaf-docker</artifactId>
+	<artifactId>master-docker-image</artifactId>
 
 	<packaging>pom</packaging>
 
-	<name>Docker release.</name>
+	<name>IGS :: MASTER :: Docker</name>
 
-	<description>Run IGS on Docker.</description>
+	<description>Run IGS-MASTER on Docker.</description>
 
 	<properties>
 
@@ -40,8 +40,8 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>eu.tecfox.cloud</groupId>
-			<artifactId>igs-karaf-assembly</artifactId>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>master-karaf-assembly</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
@@ -95,7 +95,7 @@
 							<outputDirectory>src/main/docker/</outputDirectory>
 							<resources>
 								<resource>
-									<directory>../igs-karaf-assembly/target/</directory>
+									<directory>../master-karaf-assembly/target/</directory>
 									<includes>
 										<include>igs-karaf-assembly-${project.version}.tar.gz</include>
 									</includes>
@@ -131,8 +131,8 @@
 					<dockerHost>npipe:////./pipe/docker_engine</dockerHost>
 					<images>
 						<image>
-							<name>tecfox/igs:%v</name>
-							<alias>identity-graph-server</alias>
+							<name>tecfox/igs-master:%v</name>
+							<alias>igs-master-node</alias>
 							<build>
 								<contextDir>.</contextDir>
 								<args>
