@@ -7,9 +7,10 @@ function create_user(){
 }
 
 echo "Installing: $1"
-archName=$1
-tar -xvf $archName -C /opt
-dirName=${archName%.tar.gz}
+fileName=$1
+# we keep the version here (no strip!) since it's also in the tarball..'
+dirName=${fileName%.tar.gz}
+tar -xvf $fileName -C /opt
 echo "KARAF_HOME=/opt/$dirName" >> /etc/environment
 echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /etc/environment
 create_user "karaf" "karaf#123"

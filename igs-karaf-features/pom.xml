@@ -44,7 +44,7 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-service-bundle</artifactId>
+			<artifactId>igs-auth-bundle</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		
@@ -54,8 +54,7 @@
 
 	<build>
 
-		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Karaf-Features</finalName>
+		<finalName>${project.artifactId}</finalName>
 
 		<resources>
 

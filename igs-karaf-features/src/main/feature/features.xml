@@ -17,7 +17,7 @@
 	<feature name='igs-auth-service' version='${project.version}'>
 		<!-- Memento: required features of Karaf assembly defined in plugin! -->
 		<feature>igs-core-bdb</feature>
-		<bundle>mvn:eu.tecfox.cloud/igs-service-bundle/${project.version}</bundle>
+		<bundle>mvn:eu.tecfox.cloud/igs-auth-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-web-master' version='${project.version}'>
