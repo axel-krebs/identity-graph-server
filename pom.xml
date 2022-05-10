@@ -55,6 +55,8 @@
 
 		<!-- Other API: logging etc. -->
 		<slf4j.api.version>1.7.36</slf4j.api.version>
+		
+		<java.version>11</java.version>
 
 		<java.version>11</java.version>
 		<java.ee.version>8.0.1</java.ee.version>
@@ -120,8 +122,152 @@
 			</dependency>
 
 			<!-- Supporting OSGi frameworks, OPS4J-PAX et. al. Note: The dependencies themselves have to be defined 
+<<<<<<< HEAD
 				in the respective module, that is MASTER or REPLICA assemblies. For Karaf BOM, 'import' scope suffices, 
 				no need to import features! -->
+=======
+				in the respective module, that is MASTER or REPLICA assemblies -->
+
+			<dependency>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>karaf-bom</artifactId>
+				<version>${karaf.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>org.apache.karaf.util</artifactId>
+				<version>${karaf.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>cellar</artifactId>
+				<version>${karaf.cellar.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.glassfish.jaxb</groupId>
+				<artifactId>jaxb-bom</artifactId>
+				<version>${glassfish.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.cdi</groupId>
+				<artifactId>pax-cdi-api</artifactId>
+				<!-- <version>0.8.0</version> -->
+				<version>1.1.4</version>
+				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax</groupId>
+				<artifactId>cdi</artifactId>
+				<version>${pax.cdi.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.jdbc</groupId>
+				<artifactId>pax-jdbc-features</artifactId>
+				<version>${pax.jdbc.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.transx</groupId>
+				<artifactId>pax-transx-features</artifactId>
+				<version>0.5.1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.web</groupId>
+				<artifactId>pax-web-features</artifactId>
+				<version>${pax.web.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.keycloak</groupId>
+				<artifactId>pax-keycloak-features</artifactId>
+				<version>${pax.keycloak.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.servicemix.bundles</groupId>
+				<artifactId>org.apache.servicemix.bundles.spring-beans</artifactId>
+				<!-- <version>3.2.11.RELEASE_1</version> -->
+				<version>5.3.18_1</version>
+				<optional>true</optional>
+			</dependency>
+
+			<!-- DI container, not Spring (Aries); maybe already contained in Karaf BOM -->
+
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.aries.blueprint</groupId> -->
+			<!-- <artifactId>org.apache.aries.blueprint.annotation</artifactId> -->
+			<!-- <version>${aries.blueprint.annotation.version}</version> -->
+			<!-- <scope>provided</scope> -->
+			<!-- </dependency> -->
+
+			<dependency>
+				<groupId>org.apache.aries.blueprint</groupId>
+				<artifactId>blueprint-maven-plugin-annotation</artifactId>
+				<version>${blueprint.maven.plugin.annotation.version}</version>
+				<type>bundle</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.cdi</groupId>
+				<artifactId>aries-cdi-feature</artifactId>
+				<version>1.1.5</version>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.jpa</groupId>
+				<artifactId>jpa-features</artifactId>
+				<version>2.7.3</version>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.rsa</groupId>
+				<artifactId>rsa-features</artifactId>
+				<version>1.16.1</version>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.jax.rs</groupId>
+				<artifactId>org.apache.aries.jax.rs.features</artifactId>
+				<version>2.0.1</version>
+				<type>pom</type>
+			</dependency>
+
+			<!-- These are not yet supported by Aries blueprint: <dependency> <groupId>jakarta.inject</groupId> 
+				<artifactId>jakarta.inject-api</artifactId> <version>2.0.1</version> </dependency> <dependency> <groupId>jakarta.enterprise</groupId> 
+				<artifactId>jakarta.enterprise.cdi-api</artifactId> <version>4.0.0</version> <scope>provided</scope> 
+				</dependency> <dependency> <groupId>jakarta.persistence</groupId> <artifactId>jakarta.persistence-api</artifactId> 
+				<version>3.1.0</version> </dependency> <dependency> <groupId>jakarta.transaction</groupId> <artifactId>jakarta.transaction-api</artifactId> 
+				<version>2.0.1</version> </dependency> <dependency> <groupId>jakarta.annotation</groupId> <artifactId>jakarta.annotation-api</artifactId> 
+				<version>2.1.0</version> </dependency> -->
+
+			<!-- JEE API supported by Aries blueprint annotations: -->
+>>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 
 			<dependency>
 				<groupId>org.apache.karaf</groupId>
@@ -159,6 +305,7 @@
 				<scope>import</scope>
 			</dependency>
 
+<<<<<<< HEAD
 			<dependency>
 				<groupId>org.ops4j.pax.cdi</groupId>
 				<artifactId>pax-cdi-api</artifactId>
@@ -217,7 +364,10 @@
 			<!-- <scope>provided</scope> -->
 			<!-- </dependency> -->
 
+=======
+>>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 			<dependency>
+<<<<<<< HEAD
 				<groupId>org.apache.aries.blueprint</groupId>
 				<artifactId>blueprint-maven-plugin-annotation</artifactId>
 				<version>${blueprint.maven.plugin.annotation.version}</version>
@@ -234,6 +384,11 @@
 				<groupId>org.apache.aries.jpa</groupId>
 				<artifactId>jpa-features</artifactId>
 				<version>2.7.3</version>
+=======
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<version>2.1.1</version>
+>>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 			</dependency>
 
 			<dependency>
@@ -424,6 +579,38 @@
 
 	<profiles>
 
+<<<<<<< HEAD
+=======
+		<profile>
+			<id>karaf-master</id>
+			<modules>
+				<module>igs-karaf-features</module>
+				<module>igs-karaf-master</module>
+			</modules>
+			<dependencies>
+				<!-- ? -->
+			</dependencies>
+			<build>
+				<!-- ? -->
+			</build>
+		</profile>
+
+		<profile>
+			<id>karaf-replica</id>
+			<modules>
+				<module>igs-karaf-features</module>
+				<module>igs-karaf-replica</module>
+			</modules>
+			<dependencies>
+				<!-- ? -->
+			</dependencies>
+			<build>
+				<!-- ? -->
+			</build>
+		</profile>
+		
+
+>>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 	</profiles>
 
 </project>
