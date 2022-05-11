@@ -1,6 +1,7 @@
 package eu.tecfox.cloud.identity.impl.bdb;
 
-import eu.tecfox.cloud.identity.api.Dummy;
+import org.osgi.util.promise.Promise;
+
 import eu.tecfox.cloud.identity.api.Identity;
 import eu.tecfox.cloud.identity.api.IdentityService;
 import eu.tecfox.cloud.identity.api.Realm;
@@ -47,8 +48,8 @@ public class IdentityServiceImpl implements IdentityService {
 	}
 	
 	@Override
-	public Identity find(String id) {
-		return new Dummy();
+	public Promise<Identity> find(String id) {
+		throw new RuntimeException("NIH");
 	}
 
 	@Override

@@ -10,17 +10,16 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-core-backend-bdb-fragment</artifactId>
+	<artifactId>igs-core-backend-ldap3-fragment</artifactId>
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Core :: Berkley JE</name>
+	<name>IGS :: Core :: LDAP</name>
 
-	<description>BerkleyDB JE backend for the graph engine persistence..</description>
+	<description>LDAP backend for the graph engine persistence.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<berkeleydb.version>3.2.76</berkeleydb.version>
 	</properties>
 
 	<dependencies>
@@ -31,18 +30,12 @@
 			<version>${project.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>berkeleydb</groupId>
-			<artifactId>je</artifactId>
-			<version>${berkeleydb.version}</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Core-Backend-BDB</finalName>
+		<finalName>IGS-Core-Backend-Neo4J</finalName>
 
 		<sourceDirectory>src/main/java</sourceDirectory>
 
@@ -54,14 +47,13 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-SymbolicName>IGS-Core-BerkeleyDB</Bundle-SymbolicName>
+						<Bundle-SymbolicName>IGS-Core-LDAPv3</Bundle-SymbolicName>
 						<Fragment-Host>IGS-Core</Fragment-Host>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
 							be used here.. -->
-						<Private-Package>eu.tecfox.cloud.persistence.bdb,</Private-Package>
-						<Export-Package>eu.tecfox.cloud.identity.impl.bdb.*
+						<Private-Package>eu.tecfox.cloud.persistence.ldap3,</Private-Package>
+						<Export-Package>eu.tecfox.cloud.identity.impl.ldap3.*
 						</Export-Package>
-						<Embed-Dependency>je;scope=runtime</Embed-Dependency>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 					</instructions>
 				</configuration>

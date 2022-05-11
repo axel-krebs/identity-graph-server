@@ -1,8 +1,10 @@
 package eu.tecfox.cloud.identity.api;
 
+import org.osgi.util.promise.Promise;
+
 public interface IdentityService {
 
-	Identity find(String id);
+	Promise<Identity> find(String id);
 
 	/**
 	 * Having a realm means the service identityService configured properly; compare to 'health

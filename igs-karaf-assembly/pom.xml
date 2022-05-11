@@ -24,7 +24,7 @@
 
 	<dependencies>
 
-		<!-- The 'application' resp. 'modules' resp. 'features' -->
+		<!-- The 'application' resp. 'modules' resp. Karaf 'features' -->
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>

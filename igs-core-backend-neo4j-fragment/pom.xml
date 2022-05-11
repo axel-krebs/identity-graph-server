@@ -16,7 +16,7 @@
 
 	<name>IGS :: Core :: Neo4J</name>
 
-	<description>Build a backend for the graph engine</description>
+	<description>Neo4J backend for the graph engine persistence.</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

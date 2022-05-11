@@ -18,6 +18,7 @@
 		<!-- fragment, quasi implementation of core API. -->
 		<module>igs-core-backend-bdb-fragment</module>
 		<module>igs-core-backend-neo4j-fragment</module>
+		<module>igs-core-backend-ldap3-fragment</module>
 		<module>igs-auth-bundle</module>
 		<module>igs-admin-bundle</module>
 		<module>igs-karaf-features</module>
@@ -55,7 +56,7 @@
 
 		<!-- Other API: logging etc. -->
 		<slf4j.api.version>1.7.36</slf4j.api.version>
-		
+
 		<java.version>11</java.version>
 
 		<java.version>11</java.version>
@@ -122,11 +123,8 @@
 			</dependency>
 
 			<!-- Supporting OSGi frameworks, OPS4J-PAX et. al. Note: The dependencies themselves have to be defined 
-<<<<<<< HEAD
 				in the respective module, that is MASTER or REPLICA assemblies. For Karaf BOM, 'import' scope suffices, 
 				no need to import features! -->
-=======
-				in the respective module, that is MASTER or REPLICA assemblies -->
 
 			<dependency>
 				<groupId>org.apache.karaf</groupId>
@@ -141,7 +139,7 @@
 				<artifactId>org.apache.karaf.util</artifactId>
 				<version>${karaf.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.apache.karaf</groupId>
 				<artifactId>cellar</artifactId>
@@ -267,7 +265,6 @@
 				<version>2.1.0</version> </dependency> -->
 
 			<!-- JEE API supported by Aries blueprint annotations: -->
->>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 
 			<dependency>
 				<groupId>org.apache.karaf</groupId>
@@ -305,7 +302,6 @@
 				<scope>import</scope>
 			</dependency>
 
-<<<<<<< HEAD
 			<dependency>
 				<groupId>org.ops4j.pax.cdi</groupId>
 				<artifactId>pax-cdi-api</artifactId>
@@ -364,10 +360,7 @@
 			<!-- <scope>provided</scope> -->
 			<!-- </dependency> -->
 
-=======
->>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 			<dependency>
-<<<<<<< HEAD
 				<groupId>org.apache.aries.blueprint</groupId>
 				<artifactId>blueprint-maven-plugin-annotation</artifactId>
 				<version>${blueprint.maven.plugin.annotation.version}</version>
@@ -384,23 +377,20 @@
 				<groupId>org.apache.aries.jpa</groupId>
 				<artifactId>jpa-features</artifactId>
 				<version>2.7.3</version>
-=======
-				<groupId>javax.ws.rs</groupId>
-				<artifactId>javax.ws.rs-api</artifactId>
-				<version>2.1.1</version>
->>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
 			</dependency>
 
 			<dependency>
 				<groupId>org.apache.aries.rsa</groupId>
 				<artifactId>rsa-features</artifactId>
 				<version>1.16.1</version>
+				<type>pom</type>
 			</dependency>
 
 			<dependency>
 				<groupId>org.apache.aries.jax.rs</groupId>
 				<artifactId>org.apache.aries.jax.rs.features</artifactId>
 				<version>2.0.1</version>
+				<type>pom</type>
 			</dependency>
 
 			<!-- These are not yet supported by Aries blueprint: <dependency> <groupId>jakarta.inject</groupId> 
@@ -464,6 +454,12 @@
 				<version>2.1.1</version>
 			</dependency>
 
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>4.0.1</version>
+			</dependency>
+
 			<!-- Supporting libraries (commons, logging etc.) -->
 
 			<dependency>
@@ -496,6 +492,8 @@
 			<artifactId>slf4j-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+
+		<!-- Pls. bundle-specific libs in corresponding bundle (layered arch.) -->
 
 	</dependencies>
 
@@ -578,39 +576,7 @@
 	</build>
 
 	<profiles>
-
-<<<<<<< HEAD
-=======
-		<profile>
-			<id>karaf-master</id>
-			<modules>
-				<module>igs-karaf-features</module>
-				<module>igs-karaf-master</module>
-			</modules>
-			<dependencies>
-				<!-- ? -->
-			</dependencies>
-			<build>
-				<!-- ? -->
-			</build>
-		</profile>
-
-		<profile>
-			<id>karaf-replica</id>
-			<modules>
-				<module>igs-karaf-features</module>
-				<module>igs-karaf-replica</module>
-			</modules>
-			<dependencies>
-				<!-- ? -->
-			</dependencies>
-			<build>
-				<!-- ? -->
-			</build>
-		</profile>
-		
-
->>>>>>> branch 'master' of git@github.com:axel-krebs/identity-graph-server.git
+		<!-- s. igs-karaf-assembly -->
 	</profiles>
 
 </project>

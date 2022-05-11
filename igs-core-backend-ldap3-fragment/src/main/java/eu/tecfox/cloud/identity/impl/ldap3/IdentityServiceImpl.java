@@ -1,4 +1,4 @@
-package eu.tecfox.cloud.identity.impl.neo4j;
+package eu.tecfox.cloud.identity.impl.ldap3;
 
 import org.osgi.util.promise.Promise;
 
