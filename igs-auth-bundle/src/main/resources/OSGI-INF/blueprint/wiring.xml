@@ -17,8 +17,8 @@
 	<reference id="identityService_REF"
 		interface="eu.tecfox.cloud.identity.api.IdentityService" availability="optional" />
 
-	<bean id="authenticationService_Bean"
-		class="eu.tecfox.cloud.services.impl.AuthenticationServiceImpl" ext:field-injection="true">
+	<bean id="authExporter_Bean" class="eu.tecfox.cloud.services.impl.Application"
+		init-method="init" destroy-method="destroy" ext:field-injection="true">
 		<property name="identService" ref="identityService_REF" />
 	</bean>
 
@@ -26,8 +26,8 @@
 		could be outsourced to a OSGi fragment e.g. -->
 	<reference-list id="hazelcastServicesList" availability="optional"
 		activation="eager" interface="com.hazelcast.osgi.HazelcastOSGiService">
-		<reference-listener ref="authenticationService_Bean"
-			bind-method="bindHazelcastService" unbind-method="unbindHazelcastService" />
+		<reference-listener ref="authExporter_Bean" bind-method="bindHazelcastService"
+			unbind-method="unbindHazelcastService" />
 	</reference-list>
 
 </blueprint>

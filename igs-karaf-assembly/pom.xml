@@ -51,14 +51,6 @@
 
 		<dependency>
 			<groupId>org.apache.karaf.features</groupId>
-			<artifactId>framework</artifactId>
-			<classifier>features</classifier>
-			<type>xml</type>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.karaf.features</groupId>
 			<artifactId>standard</artifactId>
 			<classifier>features</classifier>
 			<type>xml</type>
@@ -226,36 +218,34 @@
 								<!-- <library>mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.boot/${karaf.version};type:=boot</library> -->
 								<!-- <library>mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.boot/${karaf.version};type:=boot</library> -->
 							</libraries>
-							<features>
+							<bootFeatures>
 
-								<!-- <feature prerequisite="true">eventadmin</feature> -->
+								<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
+									management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
+								
 								<feature prerequisite="true">standard</feature>
+								<!-- <feature prerequisite="true">eventadmin</feature> -->
 								<feature prerequisite="true">jaas-boot</feature>
 								<feature prerequisite="true">log</feature>
 								<feature prerequisite="true">scheduler</feature>
 								<feature prerequisite="true">scr</feature>
 								<feature prerequisite="true">shell-compat</feature>
 								<feature prerequisite="true">ssh</feature>
-								<feature prerequisite="true">wrapper</feature>
+								<feature prerequisite="true">wrap</feature>
 
-								<!-- Aries Blueprint support (service) -->
-								<feature prerequisite="true">aries-blueprint</feature>
-								<feature prerequisite="true">aries-proxy</feature>
+								<!-- Aries container used by IGS bundles -->
+								<bootFeature>aries-blueprint</bootFeature>
+								<bootFeature>aries-proxy</bootFeature>
 
-								<feature>cellar</feature>
-								<!-- <feature>cellar-cloud</feature> -->
-								<!-- <feature>cellar-dosgi</feature> -->
-								<!-- <feature>cellar-etcd</feature> -->
-								<!-- <feature>cellar-eventadmin</feature> -->
-								<!-- <feature>cellar-hazelcast</feature> -->
-								<!-- <feature>cellar-http-balancer</feature> -->
-								<!-- <feature>cellar-log</feature> -->
+								<!-- Karaf Cellar used for IGS cluster -->
+								<bootFeature>cellar</bootFeature>
 
 								<!-- "EE" feature stack; 'jndi' is "Apache Aries JNDI 1.0.0"; Alternatively, PAX-CDI can be used, 
 									see dependency in parent pom.xml! -->
-								<feature>jndi</feature>
+								<bootFeature>jndi</bootFeature>
 								<feature>osgi-cdi-owb</feature>
 								<!-- <feature>osgi-cdi-owb-web</feature> -->
+
 								<!-- <feature>pax-web-http-whiteboard</feature> -->
 								<!-- Transaction support (JTA); defaults to Geronimo (alt: Narayana, Atomikos) and Aries tx-control -->
 								<feature>transaction</feature>
@@ -276,28 +266,9 @@
 								<!-- <feature>hibernate</feature> -->
 								<!-- <feature>eclipselink</feature> -->
 
-							</features>
-							<bootFeatures>
-
-								<!-- Aries container used by IGS bundles -->
-								<bootFeature>aries-blueprint</bootFeature>
-								<bootFeature>aries-proxy</bootFeature>
-
-								<!-- Karaf Cellar used for IGS cluster -->
-								<bootFeature>cellar</bootFeature>
-
 								<!-- <bootFeature>igs-web-master</bootFeature> -->
-								<!-- <bootFeature>igs-auth-service</bootFeature> -->
+								<bootFeature>igs-auth-service</bootFeature>
 
-								<bootFeature>jaas-boot</bootFeature>
-								<bootFeature>jndi</bootFeature>
-								<!-- <bootFeature>scr</bootFeature> -->
-
-								<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
-									management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
-								<bootFeature>standard</bootFeature>
-								<bootFeature>transaction</bootFeature>
-								<!-- <bootFeature>wrapper</bootFeature> -->
 							</bootFeatures>
 
 							<!-- Features NOT to be distributed in the cluster -->

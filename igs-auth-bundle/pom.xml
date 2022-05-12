@@ -33,21 +33,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>com.hazelcast</groupId>
 			<artifactId>hazelcast-all</artifactId>
-			<!-- scope 'compile' since at runtime the OSGI service will be exported by Apache Karaf Cellar. The 
-				same way the version must be regareded! -->
-			<scope>compile</scope>
+			<version>${hazelcast.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -69,6 +57,8 @@
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
 						<Private-Package>eu.tecfox.cloud.services.impl</Private-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
+<!-- 						<Embed-Dependency></Embed-Dependency> -->
+						<!-- We do not export any OSGi-I/F here, but expose a RESTful service! -->
 					</instructions>
 				</configuration>
 			</plugin>
