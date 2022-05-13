@@ -3,7 +3,7 @@ package eu.tecfox.cloud.identity.api;
 public interface Identity {
 	
 	enum Kind {
-		PERSON,
+		USER_AGENT,
 		GROUP,
 		AVATAR,
 		PROCESS,

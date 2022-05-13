@@ -25,8 +25,7 @@ public class CoreBundleActivator implements BundleActivator {
 	private ServiceTracker<IdentityService, IdentityService> idServiceTracker;
 
 	/**
-	 * At the moment, the implementation of the service is provided by a OSGi
-	 * fragment that supports Berkeley JE persistence.
+	 * The service persistence; provided by fragments that can be configured.
 	 */
 	public IdentityService identityService;
 
