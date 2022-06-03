@@ -1,4 +1,4 @@
-package eu.tecfox.cloud.identity.impl;
+package de.akrebs.cloud.identity.impl;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -7,7 +7,7 @@ import org.osgi.util.tracker.ServiceTracker;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import eu.tecfox.cloud.identity.api.IdentityService;
+import de.akrebs.cloud.identity.api.IdentityService;
 
 /**
  * OSGi-style configuration and tracking of services.

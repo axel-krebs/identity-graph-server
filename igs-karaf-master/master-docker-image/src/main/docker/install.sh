@@ -2,14 +2,14 @@
 
 function create_user(){
 	echo "Creating user $1, password: $2"
-	useradd --home-dir /home/$1 -m --shell /bin/bash -U -p $2 $1
-	#echo "$1:$2" | chpasswd
+	useradd --home-dir /home/$1 -m --shell /bin/bash -U $1
+	echo "$1:$2" | chpasswd
 }
 
 echo "Installing: $1"
-archName=$1
-tar -xvf $archName -C /opt
-dirName=${archName%.tar.gz}
+tarName=$1
+tar -xvf $tarName -C /opt
+dirName=${tarName%.tar.gz}
 echo "KARAF_HOME=/opt/$dirName" >> /etc/environment
 echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> /etc/environment
 create_user "karaf" "karaf#123"

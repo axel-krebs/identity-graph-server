@@ -1,10 +1,10 @@
-package eu.tecfox.cloud.identity.impl.bdb;
+package de.akrebs.cloud.identity.impl.bdb;
 
 import org.osgi.util.promise.Promise;
 
-import eu.tecfox.cloud.identity.api.Identity;
-import eu.tecfox.cloud.identity.api.IdentityService;
-import eu.tecfox.cloud.identity.api.Realm;
+import de.akrebs.cloud.identity.api.Identity;
+import de.akrebs.cloud.identity.api.IdentityService;
+import de.akrebs.cloud.identity.api.Realm;
 
 public class IdentityServiceImpl implements IdentityService {
 

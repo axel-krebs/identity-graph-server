@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs-karaf-client</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>client-docker-image</artifactId>
+
+	<packaging>pom</packaging>
+
+	<name>IGS :: CLIENT :: Docker</name>
+
+	<description>Run IGS-CLIENT on Docker.</description>
+
+	<properties>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
+		<!-- Java compliance level -->
+		<jdk.version>11</jdk.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>master-karaf-assembly</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- exclude version in artifact -->
+		<finalName>${project.artifactId}</finalName>
+
+		<plugins>
+
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-dependency-plugin</artifactId> -->
+			<!-- <version>3.3.0</version> -->
+			<!-- <configuration> -->
+			<!-- -->
+			<!-- </configuration> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>copy-dependencies</id> -->
+			<!-- <phase>generate-resources</phase> -->
+			<!-- <configuration> -->
+			<!-- <includeArtifactIds>igs-karaf-assembly</includeArtifactIds> -->
+			<!-- <outputDirectory>src/main/docker/</outputDirectory> -->
+			<!-- <overWriteReleases>false</overWriteReleases> -->
+			<!-- <overWriteSnapshots>false</overWriteSnapshots> -->
+			<!-- <overWriteIfNewer>true</overWriteIfNewer> -->
+			<!-- <excludeTransitive>true</excludeTransitive> -->
+			<!-- </configuration> -->
+			<!-- <goals> -->
+			<!-- <goal>copy-dependencies</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-KAR-to-docker-JVM</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>src/main/docker/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>../client-karaf-assembly/target/</directory>
+									<includes>
+										<include>client-karaf-assembly-${project.version}.tar.gz</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/docker/</directory>
+							<includes>
+								<include>**/*.tar.gz</include>
+								<include>**/*.jar</include>
+								<include>**/*.pom</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<configuration>
+					<dockerHost>npipe:////./pipe/docker_engine</dockerHost>
+					<images>
+						<image>
+							<name>axel9691/igs-node:%v</name>
+							<alias>igs-client-node</alias>
+							<build>
+								<contextDir>.</contextDir>
+								<args>
+									<ZIP_FILE_NAME>client-karaf-assembly-${project.version}.tar.gz</ZIP_FILE_NAME>
+								</args>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>docker-build</id>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+							<!-- <goal>start</goal> -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

@@ -16,7 +16,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tecfox.cloud</groupId>
+		<groupId>de.akrebs.cloud</groupId>
 		<artifactId>igs-karaf-master</artifactId>
 		<version>1.0.0</version>
 	</parent>
@@ -83,7 +83,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<id>copy-KAR-to-docker-JVM</id>
@@ -97,7 +96,7 @@
 								<resource>
 									<directory>../master-karaf-assembly/target/</directory>
 									<includes>
-										<include>igs-karaf-assembly-${project.version}.tar.gz</include>
+										<include>master-karaf-assembly-${project.version}.tar.gz</include>
 									</includes>
 								</resource>
 							</resources>
@@ -131,12 +130,12 @@
 					<dockerHost>npipe:////./pipe/docker_engine</dockerHost>
 					<images>
 						<image>
-							<name>tecfox/igs-master:%v</name>
-							<alias>igs-master-node</alias>
+							<name>axel9691/igs-master:%v</name>
+							<alias>igs-identity-server</alias>
 							<build>
 								<contextDir>.</contextDir>
 								<args>
-									<ZIP_FILE_NAME>igs-karaf-assembly-${project.version}.tar.gz</ZIP_FILE_NAME>
+									<ZIP_FILE_NAME>master-karaf-assembly-${project.version}.tar.gz</ZIP_FILE_NAME>
 								</args>
 							</build>
 						</image>

@@ -1,0 +1,70 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-openid-connect-bundle</artifactId>
+
+	<packaging>bundle</packaging>
+
+	<name>IGS :: Service :: OpenID Connect</name>
+
+	<description>Provide OpenID Connect compatible authentication service.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<igs.core.version>1.0.0</igs.core.version>
+		<hazelcast.version>3.12.8</hazelcast.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>de.akrebs.cloud</groupId>
+			<artifactId>igs-core-bundle</artifactId>
+			<version>${igs.core.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.hazelcast</groupId>
+			<artifactId>hazelcast-all</artifactId>
+			<version>${hazelcast.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
+		<finalName>IGS-Auth-Service</finalName>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>IGS-Auth-Service</Bundle-SymbolicName>
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
+						<Private-Package>de.akrebs.cloud.services.impl</Private-Package>
+						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
+						<!-- <Embed-Dependency></Embed-Dependency> -->
+						<!-- We do not export any OSGi-I/F here, but expose a RESTful service! -->
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

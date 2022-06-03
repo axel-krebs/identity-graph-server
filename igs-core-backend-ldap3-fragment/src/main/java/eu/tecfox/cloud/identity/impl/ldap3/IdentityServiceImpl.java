@@ -1,9 +1,9 @@
-package eu.tecfox.cloud.identity.impl.ldap3;
+package de.akrebs.cloud.identity.impl.ldap3;
 
 import org.osgi.util.promise.Promise;
 
-import eu.tecfox.cloud.identity.api.Identity;
-import eu.tecfox.cloud.identity.api.IdentityService;
+import de.akrebs.cloud.identity.api.Identity;
+import de.akrebs.cloud.identity.api.IdentityService;
 
 public class IdentityServiceImpl implements IdentityService {
 

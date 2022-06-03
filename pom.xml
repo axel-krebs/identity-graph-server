@@ -5,33 +5,28 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>eu.tecfox.cloud</groupId>
+	<groupId>de.akrebs.cloud</groupId>
 	<artifactId>igs</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.0</version>
 
 	<name>Identity Graph Server</name>
-	<description>Server</description>
-
-	<repositories>
-		<repository>
-			<id>maven-restlet</id>
-			<name>Public online Restlet repository</name>
-			<url>https://maven.restlet.talend.com</url>
-		</repository>
-	</repositories>
+	<description>Access and Identity Server</description>
 
 	<modules>
 		<module>igs-core-bundle</module>
-		<!-- fragment, quasi implementation of core API. -->
 		<module>igs-core-backend-bdb-fragment</module>
-		<module>igs-core-backend-neo4j-fragment</module>
 		<module>igs-core-backend-ldap3-fragment</module>
-		<module>igs-auth-bundle</module>
+		<module>igs-oauth2-bundle</module>
+		<module>igs-openid-connect-bundle</module>
+		<module>igs-saml2-bundle</module>
+		<module>igs-wsfed-bundle</module>
 		<module>igs-admin-bundle</module>
+		<module>igs-client-bundle</module>
 		<module>igs-karaf-features</module>
-		<module>igs-karaf-assembly</module>
-		<module>igs-docker-image</module>
+		<!-- dist. -->
+		<module>igs-karaf-master</module>
+		<module>igs-karaf-client</module>
 	</modules>
 
 	<properties>
@@ -205,6 +200,12 @@
 				<version>${slf4j.api.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.apache.johnzon</groupId>
+				<artifactId>johnzon-core</artifactId>
+				<version>1.2.18</version>
+			</dependency>
+
 			<!-- DI container, not Spring (Aries); maybe already contained in Karaf BOM, s. below -->
 
 			<!-- <dependency> -->
@@ -220,6 +221,12 @@
 				<!-- <version>3.2.11.RELEASE_1</version> -->
 				<version>5.3.18_1</version>
 				<optional>true</optional>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.servicemix.specs</groupId>
+				<artifactId>org.apache.servicemix.specs.json-api-1.1</artifactId>
+				<version>2.9.0</version>
 			</dependency>
 
 			<dependency>
@@ -256,7 +263,7 @@
 				<version>2.0.1</version>
 				<type>pom</type>
 			</dependency>
-
+			
 			<dependency>
 				<groupId>org.ops4j.pax.cdi</groupId>
 				<artifactId>pax-cdi-api</artifactId>

@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tecfox.cloud</groupId>
+		<groupId>de.akrebs.cloud</groupId>
 		<artifactId>igs</artifactId>
 		<version>1.0.0</version>
 	</parent>
@@ -35,7 +35,7 @@
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Core-Backend-Neo4J</finalName>
+		<finalName>IGS-Core-Backend-LDAP3</finalName>
 
 		<sourceDirectory>src/main/java</sourceDirectory>
 
@@ -51,8 +51,8 @@
 						<Fragment-Host>IGS-Core</Fragment-Host>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
 							be used here.. -->
-						<Private-Package>eu.tecfox.cloud.persistence.ldap3,</Private-Package>
-						<Export-Package>eu.tecfox.cloud.identity.impl.ldap3.*
+						<Private-Package>de.akrebs.cloud.persistence.ldap3,</Private-Package>
+						<Export-Package>de.akrebs.cloud.identity.impl.ldap3.*
 						</Export-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 					</instructions>

@@ -1,4 +1,4 @@
-package eu.tecfox.cloud.identity.api;
+package de.akrebs.cloud.identity.api;
 
 /**
  * Represents a network node.

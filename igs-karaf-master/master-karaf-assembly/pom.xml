@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tecfox.cloud</groupId>
+		<groupId>de.akrebs.cloud</groupId>
 		<artifactId>igs-karaf-master</artifactId>
 		<version>1.0.0</version>
 	</parent>
@@ -21,6 +21,20 @@
 	<properties>
 		<!-- -->
 	</properties>
+	
+	<dependencyManagement>
+	
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.karaf</groupId>
+                <artifactId>karaf-bom</artifactId>
+                <version>4.4.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+        
+    </dependencyManagement>
 
 	<dependencies>
 
@@ -163,7 +177,6 @@
 		<dependency>
 			<groupId>javax.xml.parsers</groupId>
 			<artifactId>jaxp-api</artifactId>
-			<version>1.4.5</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -276,9 +289,6 @@
 						<!-- Karaf Cellar used for IGS cluster -->
 						<bootFeature>cellar</bootFeature>
 
-						<bootFeature>igs-auth-service</bootFeature>
-						<!-- <bootFeature>igs-web-master</bootFeature> -->
-
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 						<!-- <bootFeature>scr</bootFeature> -->
@@ -288,6 +298,8 @@
 						<bootFeature>standard</bootFeature>
 						<bootFeature>transaction</bootFeature>
 						<!-- <bootFeature>wrapper</bootFeature> -->
+						
+						<bootFeature>igs-master</bootFeature>
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->

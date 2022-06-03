@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tecfox.cloud</groupId>
+		<groupId>de.akrebs.cloud</groupId>
 		<artifactId>igs</artifactId>
 		<version>1.0.0</version>
 	</parent>
@@ -44,10 +44,27 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-auth-bundle</artifactId>
+			<artifactId>igs-oauth2-bundle</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-openid-connect-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-saml2-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-wsfed-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
 
 	</dependencies>

@@ -12,17 +12,17 @@
         http://aries.apache.org/xmlns/jpa/v2.0.0 https://aries.apache.org/xmlns/jpa/v2.0.0">
 
 	<cm:property-placeholder
-		persistent-id="eu.tecfox.cloud.core" update-strategy="reload">
+		persistent-id="de.akrebs.cloud.core" update-strategy="reload">
 		<cm:default-properties>
 			<cm:property name="realm.name" value="INVALID" />
 		</cm:default-properties>
 	</cm:property-placeholder>
 		
-	<bean id="identService_Bean" class="eu.tecfox.cloud.identity.impl.ldap3.IdentityServiceImpl">
+	<bean id="identService_Bean" class="de.akrebs.cloud.identity.impl.ldap3.IdentityServiceImpl">
 		<property name="realmName" value="{{realm.name}}"></property>
 	</bean>
 
 	<service id="identService" ref="identService_Bean"
-		interface="eu.tecfox.cloud.identity.api.IdentityService" />
+		interface="de.akrebs.cloud.identity.api.IdentityService" />
 
 </blueprint>

@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<packaging>pom</packaging>
+
+	<artifactId>igs-karaf-client</artifactId>
+
+	<name>IGS :: SERVICE</name>
+
+	<description>Assemble the Karaf runtime and create Docker image for CLIENT.</description>
+
+	<modules>
+		<module>client-karaf-assembly</module>
+		<module>client-docker-image</module>
+	</modules>
+
+	<dependencyManagement>
+
+		<dependencies>
+
+			<dependency>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>karaf-bom</artifactId>
+				<version>${karaf.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+</project>

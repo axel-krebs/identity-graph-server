@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>eu.tecfox.cloud</groupId>
+		<groupId>de.akrebs.cloud</groupId>
 		<artifactId>igs</artifactId>
 		<version>1.0.0</version>
 	</parent>
@@ -58,8 +58,8 @@
 						<Fragment-Host>IGS-Core</Fragment-Host>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
 							be used here.. -->
-						<Private-Package>eu.tecfox.cloud.persistence.bdb,</Private-Package>
-						<Export-Package>eu.tecfox.cloud.identity.impl.bdb.*
+						<Private-Package>de.akrebs.cloud.persistence.bdb,</Private-Package>
+						<Export-Package>de.akrebs.cloud.identity.impl.bdb.*
 						</Export-Package>
 						<Embed-Dependency>je;scope=runtime</Embed-Dependency>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
