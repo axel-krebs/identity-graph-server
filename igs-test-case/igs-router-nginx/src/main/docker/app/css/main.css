@@ -1,0 +1,16 @@
+h1 {
+	font-weight: bold;
+	color: blue;
+}
+
+p {
+	color: red;
+}
+
+.res_field {
+	width: 100px;
+	height: 50px;
+	border-width: 1px;
+	background-color: lime;
+	color: black;
+}

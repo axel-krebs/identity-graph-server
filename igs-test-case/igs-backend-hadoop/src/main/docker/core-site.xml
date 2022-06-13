@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<property>
+		<name>fs.defaultFS</name>
+		<value>hdfs://localhost:9000</value>
+	</property>
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>/srv/dfs/namespace_logs</value>
+	</property>
+	<property>
+		<name>dfs.datanode.data.dir</name>
+		<value>/srv/dfs/data</value>
+	</property>
+</configuration>

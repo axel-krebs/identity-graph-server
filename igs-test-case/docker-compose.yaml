@@ -1,0 +1,95 @@
+services:
+  igs-gateway-1:
+    image: axel9691/igs-router-nginx:1.0.0
+    container_name: igs-Gateway-1
+    links:
+    - igs-master-1
+    - igs-master-2
+    - igs-node-search-1
+    - igs-node-search-2
+    - hadoop-webhdfs-1
+    ports:
+    - 8080:8080
+    - 8081:8081
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.12
+  igs-master-1:
+    image: axel9691/igs-master:1.0.0
+    container_name: igs-Master-1
+    hostname: igs-master-1
+    ports:
+    - 8101:8080
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.101
+        aliases:
+        - master_101
+  igs-master-2:
+    image: axel9691/igs-master:1.0.0
+    container_name: igs-Master-2
+    hostname: igs-master-2
+    ports:
+    - 8102:8080
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.102
+        aliases:
+        - master_102
+  igs-node-search-1:
+    image: axel9691/igs-node-search:1.0.0
+    container_name: igs-Node-search-1
+    hostname: igs-search-1
+    links:
+      - neo4j-1
+    ports:
+    - 8201:8080
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.121
+        aliases:
+        - search_121
+  igs-node-search-2:
+    image: axel9691/igs-node-search:1.0.0
+    container_name: igs-Node-search-2
+    hostname: igs-search-2
+    links:
+      - neo4j-1
+    ports:
+    - 8202:8080
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.122
+        aliases:
+        - search_122
+  neo4j-1:
+    image: axel9691/igs-backend-neo4j:1.0.0
+    container_name: igs-Backend-Neo4J-1
+    hostname: neo4j-1
+    ports:
+    - 7474:7474
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.201
+        aliases:
+        - igs_neo4j_201
+  hadoop-webhdfs-1:
+    image: axel9691/igs-backend-hadoop:1.0.0
+    container_name: igs-Hadoop-1
+    hostname: hadoop-1
+    ports:
+    - 8301:8080
+    networks:
+      igs_net:
+        ipv4_address: 123.123.123.211
+        aliases:
+        - hadoop_name_211
+        
+networks:
+  igs_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 123.123.123.0/24
+        gateway: 123.123.123.1

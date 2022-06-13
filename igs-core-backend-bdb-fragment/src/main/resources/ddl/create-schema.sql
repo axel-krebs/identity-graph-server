@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS domain;
+CREATE DATABASE domain;
+

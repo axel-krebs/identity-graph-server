@@ -24,9 +24,8 @@
 		<module>igs-admin-bundle</module>
 		<module>igs-client-bundle</module>
 		<module>igs-karaf-features</module>
-		<!-- dist. -->
-		<module>igs-karaf-master</module>
-		<module>igs-karaf-client</module>
+		<!-- show case / test -->
+		<module>igs-test-case</module>
 	</modules>
 
 	<properties>
