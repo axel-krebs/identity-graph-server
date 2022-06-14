@@ -10,32 +10,33 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-oauth2-bundle</artifactId>
+	<artifactId>igs-mp-openapi-bundle</artifactId>
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Service :: OAuth2</name>
-
-	<description>Provide OAuth 2.0 compatible authentication service.</description>
+	<name>IGS :: MicroProfile :: OpenAPI</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<igs.core.version>1.0.0</igs.core.version>
-		<hazelcast.version>3.12.8</hazelcast.version>
 	</properties>
 
 	<dependencies>
 
-		<dependency>
-			<groupId>de.akrebs.cloud</groupId>
-			<artifactId>igs-core-bundle</artifactId>
-			<version>${igs.core.version}</version>
-		</dependency>
+		<!-- Import of MicroProfile bom declared in root project! -->
 
 		<dependency>
-			<groupId>com.hazelcast</groupId>
-			<artifactId>hazelcast-all</artifactId>
-			<version>${hazelcast.version}</version>
+			<groupId>org.eclipse.microprofile.openapi</groupId>
+			<artifactId>microprofile-openapi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- TCK deps -->
+
+		<dependency>
+			<groupId>org.eclipse.microprofile.openapi</groupId>
+			<artifactId>microprofile-openapi-tck</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -43,7 +44,9 @@
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Auth-Service</finalName>
+		<finalName>IGS-MP-OpenAPI</finalName>
+
+		<sourceDirectory>src/main/java</sourceDirectory>
 
 		<plugins>
 
@@ -53,12 +56,13 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Import-Package>de.akrebs.cloud.identity.api;version="${project.version}"</Import-Package>
+						<Embed-Dependency>*</Embed-Dependency>
+						<Bundle-Activator>de.akrebs.cloud.openapi.impl.OpenAPIBundleActivator</Bundle-Activator>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
-						<Private-Package>de.akrebs.cloud.services.impl</Private-Package>
-						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
-						<!-- <Embed-Dependency></Embed-Dependency> -->
-						<!-- We do not export any OSGi-I/F here, but expose a RESTful service! -->
+						<Private-Package>de.akrebs.cloud.openapi.impl</Private-Package>
+						<Export-Package>
+							de.akrebs.cloud.openapi.api;version="${project.version}"
+						</Export-Package>
 					</instructions>
 				</configuration>
 			</plugin>

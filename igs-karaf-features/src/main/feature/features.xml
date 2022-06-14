@@ -12,11 +12,45 @@
 		<bundle>mvn:de.akrebs.cloud/igs-saml2-bundle/${project.version}</bundle>
 		<bundle>mvn:de.akrebs.cloud/igs-openid-connect-bundle/${project.version}</bundle>
 		<bundle>mvn:de.akrebs.cloud/igs-wsfed-bundle/${project.version}</bundle>
+	</feature>
+	
+	<feature name='igs-master-admin' version='${project.version}'>
+		<feature>igs-master</feature>
 		<bundle>mvn:de.akrebs.cloud/igs-admin-bundle/${project.version}</bundle>
 	</feature>
+	
+	<!-- Eclipse MicroProfile features -->
 
-	<feature name='igs-client' version='${project.version}'>
-		<bundle>mvn:de.akrebs.cloud/igs-client-bundle/${project.version}</bundle>
+	<feature name='igs-mp-config' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-config-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-faulttolerance' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-faulttolerance-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-health' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-health-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-jwt' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-jwt-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-metrics' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-metrics-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-openapi' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-openapi-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-opentracing' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-opentracing-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-mp-restclient' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-restclient-bundle/${project.version}</bundle>
 	</feature>
 
 </features>

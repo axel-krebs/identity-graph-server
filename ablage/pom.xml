@@ -10,17 +10,13 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-node-search</artifactId>
+	<artifactId>igs-master</artifactId>
 
 	<packaging>karaf-assembly</packaging>
 
-	<name>IGS :: Sample :: Search Service</name>
+	<name>IGS :: Sample :: Master</name>
 
-	<description>Search service using the Karaf client feature.</description>
-
-	<properties>
-		<aries.jax-rs.features.version>2.0.1</aries.jax-rs.features.version>
-	</properties>
+	<description>Authentication and Authorization Server.</description>
 
 	<dependencyManagement>
 
@@ -88,13 +84,85 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.aries.jax.rs</groupId>
-			<artifactId>org.apache.aries.jax.rs.features</artifactId>
-			<version>${aries.jax-rs.features.version}</version>
-			<type>pom</type>
-			<scope>runtime</scope>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.karaf.features</groupId> -->
+		<!-- <artifactId>spring</artifactId> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.ignite</groupId> -->
+		<!-- <artifactId>ignite-osgi-karaf</artifactId> -->
+		<!-- <version>${ignite.version}</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.ops4j.pax.cdi</groupId> -->
+		<!-- <artifactId>pax-cdi-features</artifactId> -->
+		<!-- <version>${pax.cdi.version}</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.aries.cdi</groupId> -->
+		<!-- <artifactId>aries-cdi-feature</artifactId> -->
+		<!-- <version>${aries.cdi.version}</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.cxf.karaf</groupId> -->
+		<!-- <artifactId>apache-cxf</artifactId> -->
+		<!-- <version>${karaf.cxf.version}</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- This is already provided by Karaf runtime feature repos -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.ops4j.pax.jdbc</groupId> -->
+		<!-- <artifactId>pax-jdbc-features</artifactId> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.ops4j.pax.keycloak</groupId> -->
+		<!-- <artifactId>pax-keycloak-features</artifactId> -->
+		<!-- <version>${pax.keycloak.version}</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.shiro</groupId> -->
+		<!-- <artifactId>shiro-features</artifactId> -->
+		<!-- <version>${shiro.version}</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.drools</groupId> -->
+		<!-- <artifactId>drools-karaf-features</artifactId> -->
+		<!-- <version>6.5.0.Final</version> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.karaf</groupId>
@@ -114,6 +182,26 @@
 
 		<!-- exclude version in artifact -->
 		<finalName>${project.artifactId}</finalName>
+
+		<resources>
+
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+			<resource>
+				<directory>src/main/filtered-resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+		</resources>
 
 		<plugins>
 
@@ -153,8 +241,6 @@
 						<!-- Aries Blueprint support (service) -->
 						<feature prerequisite="true">aries-blueprint</feature>
 						<feature prerequisite="true">aries-proxy</feature>
-						<feature prerequisite="true">aries-jax-rs-whiteboard</feature>
-						<feature prerequisite="true">aries-jax-rs-whiteboard-jackson</feature>
 
 						<feature>cellar</feature>
 						<!-- <feature>cellar-cloud</feature> -->
@@ -210,22 +296,13 @@
 						<bootFeature>transaction</bootFeature>
 						<!-- <bootFeature>wrapper</bootFeature> -->
 
-						<bootFeature>igs-mp-config</bootFeature>
-						<bootFeature>igs-mp-faulttolerance</bootFeature>
-						<bootFeature>igs-mp-health</bootFeature>
-						<bootFeature>igs-mp-jwt</bootFeature>
-						<bootFeature>igs-mp-metrics</bootFeature>
-						<bootFeature>igs-mp-openapi</bootFeature>
-						<bootFeature>igs-mp-opentracing</bootFeature>
-						<bootFeature>igs-mp-restclient</bootFeature>
+						<bootFeature>igs-master</bootFeature>
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->
 
 					<blacklistedFeatures>
 						<feature>pax-web-*</feature>
-						<feature>igs-master</feature>
-						<feature>igs-master-admin</feature>
 						<!-- <blacklistedFeature>pax-jdbc-spec</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-transx-tm</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-jdbc</blacklistedFeature> -->
@@ -275,6 +352,36 @@
 			</plugin>
 
 			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<configuration>
+					<dockerHost>npipe:////./pipe/docker_engine</dockerHost>
+					<images>
+						<image>
+							<name>axel9691/${project.artifactId}:%v</name>
+							<alias>igs-node-search</alias>
+							<build>
+								<contextDir>.</contextDir>
+								<args>
+									<ZIP_FILE_NAME>${project.artifactId}-${project.version}.tar.gz</ZIP_FILE_NAME>
+								</args>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>docker-build</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<!-- <goal>start</goal> -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.2.0</version>
 				<configuration>
@@ -290,38 +397,6 @@
 						</fileset>
 					</filesets>
 				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<configuration>
-					<dockerHost>npipe:////./pipe/docker_engine</dockerHost>
-					<images>
-						<image>
-							<name>axel9691/${project.artifactId}:%v</name>
-							<alias>igs-node-search</alias>
-							<build>
-								<contextDir>.</contextDir>
-								<args>
-									<ZIP_FILE_NAME>${project.artifactId}-${project.version}.tar.gz</ZIP_FILE_NAME>
-									<USER_NAME>karaf</USER_NAME>
-									<PASS_WORD>karaf</PASS_WORD>
-								</args>
-							</build>
-						</image>
-					</images>
-				</configuration>
-				<executions>
-					<execution>
-						<id>docker-build</id>
-						<phase>package</phase>
-						<goals>
-							<goal>build</goal>
-							<!-- <goal>start</goal> -->
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 
 		</plugins>

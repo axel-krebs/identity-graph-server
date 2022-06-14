@@ -13,6 +13,49 @@
 	<name>Identity Graph Server</name>
 	<description>Access and Identity Server</description>
 
+	<repositories>
+		<repository>
+			<id>bnd-release</id>
+			<name>Bndtools</name>
+			<url>https://bndtools.jfrog.io/bndtools/libs-release/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>OSGi</id>
+			<name>OSGi public binaries</name>
+			<url>https://oss.sonatype.org/content/groups/osgi</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>Apache Snapshots</id>
+			<url>https://repository.apache.org/content/groups/snapshots/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>bnd-release</id>
+			<name>Bndtools</name>
+			<url>https://bndtools.jfrog.io/bndtools/libs-release/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<modules>
 		<module>igs-core-bundle</module>
 		<module>igs-core-backend-bdb-fragment</module>
@@ -22,7 +65,16 @@
 		<module>igs-saml2-bundle</module>
 		<module>igs-wsfed-bundle</module>
 		<module>igs-admin-bundle</module>
-		<module>igs-client-bundle</module>
+		<!-- MicroProfile support -->
+		<module>igs-mp-config-bundle</module>
+		<module>igs-mp-faulttolerance-bundle</module>
+		<module>igs-mp-health-bundle</module>
+		<module>igs-mp-jwt-bundle</module>
+		<module>igs-mp-metrics-bundle</module>
+		<module>igs-mp-openapi-bundle</module>
+		<module>igs-mp-opentracing-bundle</module>
+		<module>igs-mp-restclient-bundle</module>
+		<!-- Targeted platform: Karaf -->
 		<module>igs-karaf-features</module>
 		<!-- show case / test -->
 		<module>igs-test-case</module>
@@ -58,17 +110,17 @@
 
 		<!-- Other API: logging etc. -->
 		<slf4j.api.version>1.7.36</slf4j.api.version>
-
-		<java.version>11</java.version>
-
 		<java.version>11</java.version>
 		<java.ee.version>8.0.1</java.ee.version>
+		<microprofile.version>5.0</microprofile.version>
 
 	</properties>
 
 	<dependencyManagement>
 
 		<dependencies>
+
+			<!-- target the OSGi platform -->
 
 			<dependency>
 				<groupId>org.osgi</groupId>
@@ -125,7 +177,7 @@
 			</dependency>
 
 			<!-- JEE API supported by Aries blueprint annotations; needed for bundles as well as Karaf runtime, 
-				therefore defined in parent. Jakarta-EE not yet supported! -->
+				therefore defined in parent. Jakarta-EE not yet supported in all modules -->
 
 			<dependency>
 				<groupId>javax</groupId>
@@ -190,6 +242,16 @@
 				<version>3.1.0</version> </dependency> <dependency> <groupId>jakarta.transaction</groupId> <artifactId>jakarta.transaction-api</artifactId> 
 				<version>2.0.1</version> </dependency> <dependency> <groupId>jakarta.annotation</groupId> <artifactId>jakarta.annotation-api</artifactId> 
 				<version>2.1.0</version> </dependency> -->
+
+			<dependency>
+				<groupId>org.eclipse.microprofile</groupId>
+				<artifactId>microprofile</artifactId>
+				<version>${microprofile.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Memento: The API should be declared as dependency in the project where it's used. -->
 
 			<!-- Supporting libraries (commons, logging etc.) -->
 
@@ -256,13 +318,6 @@
 				<type>pom</type>
 			</dependency>
 
-			<dependency>
-				<groupId>org.apache.aries.jax.rs</groupId>
-				<artifactId>org.apache.aries.jax.rs.features</artifactId>
-				<version>2.0.1</version>
-				<type>pom</type>
-			</dependency>
-			
 			<dependency>
 				<groupId>org.ops4j.pax.cdi</groupId>
 				<artifactId>pax-cdi-api</artifactId>

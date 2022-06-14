@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-mp-opentracing-bundle</artifactId>
+
+	<packaging>bundle</packaging>
+
+	<name>IGS :: MicroProfile :: OpenTracing</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jaeger.client.version>1.8.0</jaeger.client.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- Import of MicroProfile bom declared in root project! -->
+
+		<dependency>
+			<groupId>org.eclipse.microprofile.opentracing</groupId>
+			<artifactId>microprofile-opentracing-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- Supporting libs -->
+
+		<dependency>
+			<groupId>io.jaegertracing</groupId>
+			<artifactId>jaeger-client</artifactId>
+			<version>${jaeger.client.version}</version>
+		</dependency>
+
+		<!-- TCK deps -->
+
+		<dependency>
+			<groupId>org.eclipse.microprofile.opentracing</groupId>
+			<artifactId>microprofile-opentracing-tck</artifactId>
+			<version>3.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
+		<finalName>IGS-MP-OPenTracing</finalName>
+
+		<sourceDirectory>src/main/java</sourceDirectory>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Embed-Dependency>*</Embed-Dependency>
+						<Bundle-Activator>de.akrebs.cloud.tracing.impl.TracingBundleActivator</Bundle-Activator>
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
+						<Private-Package>de.akrebs.cloud.tracing.impl</Private-Package>
+						<Export-Package>
+							de.akrebs.cloud.tracing.api;version="${project.version}"
+						</Export-Package>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>
