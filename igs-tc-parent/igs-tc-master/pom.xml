@@ -1,0 +1,330 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs-tc-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-tc-master</artifactId>
+
+	<packaging>karaf-assembly</packaging>
+
+	<name>IGS :: Sample :: Master</name>
+
+	<description>Authentication and Authorization Server.</description>
+
+	<dependencyManagement>
+
+		<dependencies>
+			<dependency>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>karaf-bom</artifactId>
+				<version>${karaf.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+
+	</dependencyManagement>
+
+	<dependencies>
+
+		<!-- The 'application' resp. 'modules' resp. 'features' -->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-karaf-features</artifactId>
+			<version>${project.version}</version>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
+
+		<dependency>
+			<groupId>org.apache.karaf.features</groupId>
+			<artifactId>framework</artifactId>
+			<type>kar</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.karaf.features</groupId>
+			<artifactId>framework</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.karaf.features</groupId>
+			<artifactId>standard</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.karaf.features</groupId>
+			<artifactId>enterprise</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.karaf.cellar</groupId>
+			<artifactId>apache-karaf-cellar</artifactId>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.karaf</groupId>
+			<artifactId>org.apache.karaf.util</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.xml.parsers</groupId>
+			<artifactId>jaxp-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<!-- exclude version in artifact -->
+		<finalName>${project.artifactId}</finalName>
+
+		<resources>
+
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+			<resource>
+				<directory>src/main/filtered-resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+		</resources>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.karaf.tooling</groupId>
+				<artifactId>karaf-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>assemble</id>
+						<phase>package</phase>
+						<goals>
+							<goal>assembly</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<javase>${java.version}</javase>
+					<framework>framework</framework>
+					<libraries>
+						<!-- Add libraries not contained in JDK since version 9 -->
+						<!-- <library>mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.boot/${karaf.version};type:=boot</library> -->
+						<!-- <library>mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.boot/${karaf.version};type:=boot</library> -->
+					</libraries>
+					<includeTransitiveDependency>true</includeTransitiveDependency>
+					<features>
+
+						<!-- <feature prerequisite="true">eventadmin</feature> -->
+						<feature prerequisite="true">standard</feature>
+						<feature prerequisite="true">jaas-boot</feature>
+						<feature prerequisite="true">log</feature>
+						<feature prerequisite="true">scheduler</feature>
+						<feature prerequisite="true">scr</feature>
+						<feature prerequisite="true">shell-compat</feature>
+						<feature prerequisite="true">ssh</feature>
+						<feature prerequisite="true">wrapper</feature>
+
+						<!-- Aries Blueprint support (service) -->
+						<feature prerequisite="true">aries-blueprint</feature>
+						<feature prerequisite="true">aries-proxy</feature>
+
+						<feature>cellar</feature>
+						<!-- <feature>cellar-cloud</feature> -->
+						<!-- <feature>cellar-dosgi</feature> -->
+						<!-- <feature>cellar-etcd</feature> -->
+						<!-- <feature>cellar-eventadmin</feature> -->
+						<!-- <feature>cellar-hazelcast</feature> -->
+						<!-- <feature>cellar-http-balancer</feature> -->
+						<!-- <feature>cellar-log</feature> -->
+
+						<!-- "EE" feature stack; 'jndi' is "Apache Aries JNDI 1.0.0"; Alternatively, PAX-CDI can be used, 
+							see dependency in parent pom.xml! -->
+						<feature>jndi</feature>
+						<feature>osgi-cdi-owb</feature>
+						<!-- <feature>osgi-cdi-owb-web</feature> -->
+						<!-- <feature>pax-web-http-whiteboard</feature> -->
+						<!-- Transaction support (JTA); defaults to Geronimo (alt: Narayana, Atomikos) and Aries tx-control -->
+						<feature>transaction</feature>
+						<!-- <feature version="[3.1,4)">transaction-manager-geronimo</feature> -->
+						<!-- <feature>pax-transx-tm</feature> -->
+
+						<!-- JDBC Support; defaults to PAX-JDBC -->
+						<!-- <feature>jdbc</feature> -->
+						<!-- <feature>pax-jdbc-config</feature> -->
+						<!-- <feature>pax-jdbc-h2</feature> -->
+						<!-- <feature>pax-jdbc-pool-dbcp2</feature> -->
+
+						<!-- This is resolved to "Apache Aries JPA Container adapter for EclipseLink" -->
+						<!-- <feature>jpa</feature> -->
+
+						<!-- Attention: Changing the persistence provider requires to also change the <provider> in persistence.xml! 
+							E.g. '<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>' -->
+						<!-- <feature>hibernate</feature> -->
+						<!-- <feature>eclipselink</feature> -->
+
+					</features>
+					<bootFeatures>
+
+						<!-- Aries container used by IGS bundles -->
+						<bootFeature>aries-blueprint</bootFeature>
+						<bootFeature>aries-proxy</bootFeature>
+
+						<!-- Karaf Cellar used for IGS cluster -->
+						<bootFeature>cellar</bootFeature>
+
+						<bootFeature>jaas-boot</bootFeature>
+						<bootFeature>jndi</bootFeature>
+						<!-- <bootFeature>scr</bootFeature> -->
+
+						<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
+							management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
+						<bootFeature>standard</bootFeature>
+						<bootFeature>transaction</bootFeature>
+						<!-- <bootFeature>wrapper</bootFeature> -->
+
+						<!-- <bootFeature>igs-master</bootFeature> -->
+						<bootFeature>igs-master-admin</bootFeature>
+					</bootFeatures>
+
+					<!-- Features NOT to be distributed in the cluster -->
+
+					<blacklistedFeatures>
+						<feature>pax-web-*</feature>
+						<!-- <blacklistedFeature>pax-jdbc-spec</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-transx-tm</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-jdbc</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-jdbc-h2</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-jdbc-pool-dbcp2</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-jdbc-config</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-transx-tm-api</blacklistedFeature> -->
+						<!-- <blacklistedFeature>pax-transx-tm-geronimo</blacklistedFeature> -->
+						<!-- <blacklistedFeature>transaction-manager-geronimo</blacklistedFeature> -->
+						<!-- <blacklistedFeature>transaction-api</blacklistedFeature> -->
+						<!-- <blacklistedFeature>transaction</blacklistedFeature> -->
+						<!-- <blacklistedFeature>jdbc</blacklistedFeature> -->
+						<!-- <blacklistedFeature>jpa</blacklistedFeature> -->
+						<!-- <blacklistedFeature>eclipselink</blacklistedFeature> -->
+					</blacklistedFeatures>
+					<pidsToExtract>
+						!jmx.acl.*,
+						!org.apache.karaf.command.acl.*,
+						*
+					</pidsToExtract>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-KAR-to-docker-JVM</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>src/main/docker/</outputDirectory>
+							<resources>
+								<resource>
+									<directory>target/</directory>
+									<includes>
+										<include>${project.artifactId}-${project.version}.tar.gz</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<configuration>
+					<dockerHost>npipe:////./pipe/docker_engine</dockerHost>
+					<images>
+						<image>
+							<name>axel9691/${project.artifactId}:%v</name>
+							<alias>igs-node-search</alias>
+							<build>
+								<contextDir>.</contextDir>
+								<args>
+									<ZIP_FILE_NAME>${project.artifactId}-${project.version}.tar.gz</ZIP_FILE_NAME>
+									<USER_NAME>karaf</USER_NAME>
+									<PASS_WORD>karaf</PASS_WORD>
+								</args>
+							</build>
+						</image>
+					</images>
+				</configuration>
+				<executions>
+					<execution>
+						<id>docker-build</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+							<!-- <goal>start</goal> -->
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>src/main/docker/</directory>
+							<includes>
+								<include>**/*.tar.gz</include>
+								<include>**/*.jar</include>
+								<include>**/*.pom</include>
+							</includes>
+							<followSymlinks>false</followSymlinks>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

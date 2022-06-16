@@ -30,6 +30,18 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.service.component.annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 		<!-- TCK deps -->
 
 		<dependency>

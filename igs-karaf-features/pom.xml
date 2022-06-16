@@ -10,7 +10,7 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<packaging>kar</packaging>
+	<packaging>feature</packaging>
 
 	<artifactId>igs-karaf-features</artifactId>
 
@@ -74,10 +74,52 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-client-bundle</artifactId>
+			<artifactId>igs-mp-config-bundle</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-faulttolerance-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-health-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-jwt-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-metrics-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-openapi-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-opentracing-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-mp-restclient-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
 
 	</dependencies>
@@ -131,7 +173,7 @@
 						</goals>
 						<configuration>
 							<descriptors>
-								<descriptor>file:${project.build.directory}/feature/features.xml</descriptor>
+								<descriptor>file:${project.build.directory}/feature/feature.xml</descriptor>
 							</descriptors>
 							<features>
 								<feature>log</feature>
@@ -156,7 +198,7 @@
 							<goal>kar</goal>
 						</goals>
 						<configuration>
-							<featuresFile>${project.build.directory}/feature/features.xml</featuresFile>
+							<featuresFile>${project.build.directory}/feature/feature.xml</featuresFile>
 							<enableGeneration>false</enableGeneration>
 						</configuration>
 					</execution>
@@ -176,7 +218,7 @@
 						<configuration>
 							<artifacts>
 								<artifact>
-									<file>target/feature/features.xml</file>
+									<file>target/feature/feature.xml</file>
 									<type>xml</type>
 								</artifact>
 							</artifacts>

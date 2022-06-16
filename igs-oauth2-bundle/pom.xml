@@ -43,7 +43,7 @@
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Auth-Service</finalName>
+		<finalName>IGS-Auth-Service-OAuth2</finalName>
 
 		<plugins>
 
