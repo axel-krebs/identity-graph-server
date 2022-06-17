@@ -11,6 +11,8 @@
 	</parent>
 
 	<artifactId>igs-tc-parent</artifactId>
+	
+	<name>IGS :: Sample :: Parent</name>
 
 	<packaging>pom</packaging>
 
@@ -18,8 +20,12 @@
 
 	<modules>
 		<module>igs-tc-master</module>
-		<module>igs-tc-node-analytics</module>
-		<module>igs-tc-node-search</module>
+		<module>igs-tc-analytics-bundle</module>
+		<module>igs-tc-analytics-deployment</module>
+		<module>igs-tc-analytics-feature</module>
+		<module>igs-tc-search-bundle</module>
+		<module>igs-tc-search-deployment</module>
+		<module>igs-tc-search-feature</module>
 		<module>igs-tc-backend-neo4j</module>
 		<module>igs-tc-backend-hadoop</module>
 		<module>igs-tc-router-nginx</module>

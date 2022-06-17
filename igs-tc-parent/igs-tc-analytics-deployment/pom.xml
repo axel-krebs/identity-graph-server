@@ -10,13 +10,13 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-tc-node-search</artifactId>
+	<artifactId>igs-tc-analytics-deployment</artifactId>
 
 	<packaging>karaf-assembly</packaging>
 
-	<name>IGS :: Sample :: Search Service</name>
+	<name>IGS :: Sample :: Analytics Service</name>
 
-	<description>Search service using the Karaf client feature.</description>
+	<description>Analytics service using the Karaf client feature.</description>
 
 	<properties>
 		<aries.jax-rs.features.version>2.0.1</aries.jax-rs.features.version>
@@ -51,13 +51,21 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-tc-analytics-feature</artifactId>
+			<version>${project.version}</version>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- OSGi et. al. defined in parent POM -->
 
 		<dependency>
 			<groupId>org.apache.karaf.features</groupId>
 			<artifactId>framework</artifactId>
 			<type>kar</type>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -203,6 +211,9 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
+						<!-- application -->
+						<feature>igs-mp-all</feature>
+						<feature>igs-tc-analytics</feature>
 					</features>
 					<bootFeatures>
 
@@ -211,20 +222,19 @@
 						<bootFeature>aries-proxy</bootFeature>
 						<feature>aries-jax-rs-whiteboard</feature>
 						<feature>aries-jax-rs-whiteboard-jackson</feature>
-						
+
 						<!-- Karaf Cellar used for IGS cluster -->
 						<bootFeature>cellar</bootFeature>
 
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
-						<!-- <bootFeature>scr</bootFeature> -->
 
 						<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
 							management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
 						<bootFeature>standard</bootFeature>
 						<bootFeature>transaction</bootFeature>
-						<!-- <bootFeature>wrapper</bootFeature> -->
 
+						<!-- application -->
 						<bootFeature>igs-mp-all</bootFeature>
 					</bootFeatures>
 

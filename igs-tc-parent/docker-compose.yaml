@@ -37,7 +37,7 @@ services:
         aliases:
         - master_102
   igs-node-search-1:
-    image: axel9691/igs-node-search:1.0.0
+    image: axel9691/igs-tc-search-deployment:1.0.0
     container_name: igs-Node-search-1
     hostname: igs-search-1
     links:
@@ -50,7 +50,7 @@ services:
         aliases:
         - search_121
   igs-node-search-2:
-    image: axel9691/igs-node-search:1.0.0
+    image: axel9691/igs-tc-search-deployment:1.0.0
     container_name: igs-Node-search-2
     hostname: igs-search-2
     links:

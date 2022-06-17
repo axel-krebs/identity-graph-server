@@ -12,7 +12,9 @@
 
 	<artifactId>igs-tc-backend-neo4j</artifactId>
 	
-	<description>A service implementation supporting GraphQL.</description>
+	<name>IGS :: Sample :: Neo4J Backend</name>
+	
+	<description>Neo4J Docker image</description>
 
 	<build>
 		<plugins>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0"
+	name="igs-karaf-features-${project.version}">
+
+	<repository>mvn:de.akrebs.cloud/igs-tc-analytics-feature/${project.version}/xml/features</repository>
+
+	<feature name='igs-tc-analytics' version='${project.version}'>
+		<bundle>mvn:de.akrebs.cloud/igs-tc-analytics-bundle/${project.version}</bundle>
+	</feature>
+
+</features>

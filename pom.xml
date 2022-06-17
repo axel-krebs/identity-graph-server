@@ -115,7 +115,13 @@
 		<java.version>11</java.version>
 		<java.ee.version>8.0.1</java.ee.version>
 		<microprofile.version>5.0</microprofile.version>
-
+		<jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
+		<jakarta.el-api.version>5.0.0</jakarta.el-api.version>
+		<jakarta.enterprise.cdi-api.version>4.0.1</jakarta.enterprise.cdi-api.version>
+		<jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
+		<jakarta.json.bind-api.version>3.0.0</jakarta.json.bind-api.version>
+		<jakarta.json-api.version>2.1.0</jakarta.json-api.version>
+		<jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
 	</properties>
 
 	<dependencyManagement>
@@ -179,7 +185,7 @@
 			</dependency>
 
 			<!-- JEE API supported by Aries blueprint annotations; needed for bundles as well as Karaf runtime, 
-				therefore defined in parent. Jakarta-EE not yet supported in all modules -->
+				therefore defined in parent. Jakarta-EE not yet supported in all modules! -->
 
 			<dependency>
 				<groupId>javax</groupId>
@@ -237,13 +243,62 @@
 				<version>4.0.1</version>
 			</dependency>
 
-			<!-- These are not yet supported by Aries blueprint: <dependency> <groupId>jakarta.inject</groupId> 
-				<artifactId>jakarta.inject-api</artifactId> <version>2.0.1</version> </dependency> <dependency> <groupId>jakarta.enterprise</groupId> 
-				<artifactId>jakarta.enterprise.cdi-api</artifactId> <version>4.0.0</version> <scope>provided</scope> 
-				</dependency> <dependency> <groupId>jakarta.persistence</groupId> <artifactId>jakarta.persistence-api</artifactId> 
-				<version>3.1.0</version> </dependency> <dependency> <groupId>jakarta.transaction</groupId> <artifactId>jakarta.transaction-api</artifactId> 
-				<version>2.0.1</version> </dependency> <dependency> <groupId>jakarta.annotation</groupId> <artifactId>jakarta.annotation-api</artifactId> 
-				<version>2.1.0</version> </dependency> -->
+			<!-- Note: These are not yet supported by Aries blueprint, however can be used with MP v4.0 -->
+
+			<dependency>
+				<groupId>jakarta.annotation</groupId>
+				<artifactId>jakarta.annotation-api</artifactId>
+				<version>${jakarta.annotation-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.enterprise</groupId>
+				<artifactId>jakarta.enterprise.cdi-api</artifactId>
+				<version>${jakarta.enterprise.cdi-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.inject</groupId>
+				<artifactId>jakarta.inject-api</artifactId>
+				<version>${jakarta.inject-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.json.bind</groupId>
+				<artifactId>jakarta.json.bind-api</artifactId>
+				<version>${jakarta.json.bind-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.json</groupId>
+				<artifactId>jakarta.json-api</artifactId>
+				<version>${jakarta.json-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.ws.rs</groupId>
+				<artifactId>jakarta.ws.rs-api</artifactId>
+				<version>${jakarta.ws.rs-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.persistence</groupId>
+				<artifactId>jakarta.persistence-api</artifactId>
+				<version>3.1.0</version>
+				<scope>provided</scope>
+			</dependency>
+			
+			<dependency>
+				<groupId>jakarta.transaction</groupId>
+				<artifactId>jakarta.transaction-api</artifactId>
+				<version>2.0.1</version>
+				<scope>provided</scope>
+			</dependency>
 
 			<dependency>
 				<groupId>org.eclipse.microprofile</groupId>

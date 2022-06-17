@@ -10,13 +10,13 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-tc-node-analytics</artifactId>
+	<artifactId>igs-tc-search-deployment</artifactId>
 
 	<packaging>karaf-assembly</packaging>
 
-	<name>IGS :: Sample :: Analytics Service</name>
+	<name>IGS :: Sample :: Search Service</name>
 
-	<description>Analytics service using the Karaf client feature.</description>
+	<description>Search service using the Karaf client feature.</description>
 
 	<properties>
 		<aries.jax-rs.features.version>2.0.1</aries.jax-rs.features.version>
@@ -51,13 +51,21 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-tc-search-feature</artifactId>
+			<version>${project.version}</version>
+			<classifier>features</classifier>
+			<type>xml</type>
+			<scope>runtime</scope>
+		</dependency>
+
 		<!-- OSGi et. al. defined in parent POM -->
 
 		<dependency>
 			<groupId>org.apache.karaf.features</groupId>
 			<artifactId>framework</artifactId>
 			<type>kar</type>
-			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>
@@ -203,6 +211,9 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
+						<!-- application -->
+						<feature>igs-mp-all</feature>
+						<feature>igs-tc-search</feature>
 					</features>
 					<bootFeatures>
 
@@ -217,14 +228,16 @@
 
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
+						<!-- <bootFeature>scr</bootFeature> -->
 
 						<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
 							management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
 						<bootFeature>standard</bootFeature>
 						<bootFeature>transaction</bootFeature>
+						<!-- <bootFeature>wrapper</bootFeature> -->
 
-						<!-- application -->
 						<bootFeature>igs-mp-all</bootFeature>
+						<bootFeature>igs-tc-search</bootFeature>
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->

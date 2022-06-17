@@ -6,17 +6,17 @@
 
 	<parent>
 		<groupId>de.akrebs.cloud</groupId>
-		<artifactId>igs</artifactId>
+		<artifactId>igs-tc-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-admin-bundle</artifactId>
+	<artifactId>igs-tc-analytics-bundle</artifactId>
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Admin</name>
+	<name>IGS :: Sample :: Analytics Bundle</name>
 
-	<description>Provide a rich UI for identity management.</description>
+	<description>Bundle for Analytics</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,7 +29,7 @@
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
-		<finalName>IGS-Web-Admin</finalName>
+		<finalName>IGS-Sample-Analytics</finalName>
 		
 		<sourceDirectory>src/main/java</sourceDirectory>
 
@@ -49,11 +49,10 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Bundle-Activator>de.akrebs.cloud.identity.webadmin.impl.AdminBundleActivator</Bundle-Activator>
-						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
-						<Private-Package>de.akrebs.cloud.web.impl</Private-Package>
+						<Bundle-Activator>de.akrebs.cloud.sample.analytics.impl.AnalyticsBundleActivator</Bundle-Activator>
+						<Private-Package>de.akrebs.cloud.sample.analytics.impl</Private-Package>
 						<Export-Package>
-							de.akrebs.cloud.web.api;version="${project.version}"
+							de.akrebs.cloud.sample.analytics.api;version="${project.version}"
 						</Export-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 					</instructions>

@@ -5,62 +5,67 @@
 	<repository>mvn:de.akrebs.cloud/igs-karaf-features/1.0.0/xml/features</repository>
 
 	<feature name='igs-master' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-core-bundle/${project.version}</bundle>
-		<bundle start-level="31">mvn:de.akrebs.cloud/igs-core-backend-bdb-fragment/${project.version}</bundle>
-		<bundle start-level="31">mvn:de.akrebs.cloud/igs-core-backend-ldap3-fragment/${project.version}</bundle>
-		<bundle start-level="31">mvn:de.akrebs.cloud/igs-oauth2-bundle/${project.version}</bundle>
-		<bundle start-level="31">mvn:de.akrebs.cloud/igs-saml2-bundle/${project.version}</bundle>
-		<bundle start-level="31">mvn:de.akrebs.cloud/igs-openid-connect-bundle/${project.version}</bundle>
-		<bundle start-level="31">mvn:de.akrebs.cloud/igs-wsfed-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-backend-bdb-fragment/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-backend-ldap3-fragment/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-oauth2-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-saml2-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-openid-connect-bundle/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-wsfed-bundle/${project.version}</bundle>
 	</feature>
-	
+
 	<feature name='igs-master-admin' version='${project.version}'>
 		<feature>igs-master</feature>
-		<bundle  start-level="32">mvn:de.akrebs.cloud/igs-admin-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-admin-bundle/${project.version}</bundle>
 	</feature>
-	
+
 	<!-- Eclipse MicroProfile features -->
-	
+
 	<feature name='igs-mp-jakarta-ee' version='${project.version}'>
-		<!-- Jakarta Annotations  -->
-		<!-- Jakarta Contexts and Dependency Injection -->
-		<!-- JSON Processing API  -->
-		<!-- Jakarta RESTful Web Services -->
-		<!-- Jakarta JSON Binding -->
+		<bundle>mvn:jakarta.annotation/jakarta.annotation-api/${jakarta.annotation-api.version}</bundle>
+		<bundle>mvn:jakarta.el/jakarta.el-api/${jakarta.el-api.version}</bundle>
+		<bundle>mvn:jakarta.enterprise/jakarta.enterprise.cdi-api/${jakarta.enterprise.cdi-api.version}
+		</bundle>
+		<bundle>mvn:jakarta.json.bind/jakarta.json.bind-api/${jakarta.json.bind-api.version}</bundle>
+		<bundle>mvn:jakarta.json/jakarta.json-api/${jakarta.json-api.version}</bundle>
+		<bundle>mvn:jakarta.ws.rs/jakarta.ws.rs-api/${jakarta.ws.rs-api.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-config' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-config-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-config-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-faulttolerance' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-faulttolerance-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-faulttolerance-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-health' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-health-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-health-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-jwt' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-jwt-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-jwt-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-metrics' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-metrics-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-metrics-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-openapi' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-openapi-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-openapi-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-opentracing' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-opentracing-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-opentracing-bundle/${project.version}</bundle>
 	</feature>
 
 	<feature name='igs-mp-restclient' version='${project.version}'>
-		<bundle start-level="30">mvn:de.akrebs.cloud/igs-mp-restclient-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-mp-restclient-bundle/${project.version}</bundle>
 	</feature>
-	
+
 	<feature name='igs-mp-all' version='${project.version}'>
 		<feature>igs-mp-jakarta-ee</feature>
 		<feature>igs-mp-config</feature>
