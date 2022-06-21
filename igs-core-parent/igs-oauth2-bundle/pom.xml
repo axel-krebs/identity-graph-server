@@ -53,9 +53,13 @@
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
-						<Import-Package>de.akrebs.cloud.identity.api;version="${project.version}"</Import-Package>
+						<Import-Package>de.akrebs.cloud.identity.api;version="${project.version}",
+							org.slf4j;resolution:=mandatory;version:="[1.7,2)",
+							com.hazelcast.core;version:="[3,)",
+						</Import-Package>
+						<Export-Package>de.akrebs.cloud.services.oauth2.api</Export-Package>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
-						<Private-Package>de.akrebs.cloud.services.impl</Private-Package>
+						<Private-Package>de.akrebs.cloud.services.oauth2.impl</Private-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 						<!-- <Embed-Dependency></Embed-Dependency> -->
 						<!-- We do not export any OSGi-I/F here, but expose a RESTful service! -->

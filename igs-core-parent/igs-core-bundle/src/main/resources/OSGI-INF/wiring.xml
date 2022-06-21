@@ -11,13 +11,6 @@
         http://aries.apache.org/xmlns/transactions/v2.0.0 https://aries.apache.org/xmlns/transactions/v2.0.0
         http://aries.apache.org/xmlns/jpa/v2.0.0 https://aries.apache.org/xmlns/jpa/v2.0.0">
 
-	<cm:property-placeholder persistent-id="de.akrebs.cloud.identity.domain"
-		update-strategy="reload">
-		<cm:default-properties>
-			<cm:property name="realm.name" value="INVALID" />
-		</cm:default-properties>
-	</cm:property-placeholder>
-
 	<reference-list id="idServiceRefs" member-type="service-object"
 		interface="de.akrebs.cloud.identity.api.IdentityService" />
 

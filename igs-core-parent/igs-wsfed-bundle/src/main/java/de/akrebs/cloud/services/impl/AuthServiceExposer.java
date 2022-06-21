@@ -7,6 +7,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.osgi.HazelcastOSGiInstance;
 import com.hazelcast.osgi.HazelcastOSGiService;
 
@@ -25,29 +26,31 @@ public class AuthServiceExposer {
 
 	IdentityService identService;
 
-	HazelcastOSGiService hcCacheService;
+	HazelcastInstance hcCacheService;
 
 	public void init() {
 		log.info("### AuthServiceExposer->init()");
 	}
-	
+
 	public void destroy() {
 		log.info("### AuthServiceExposer->destroy()");
 	}
-	
-	public void bindHazelcastService(HazelcastOSGiService hcServices, Map props) {
-		this.hcCacheService = hcServices;
-		Set<HazelcastOSGiInstance> hcInstances = this.hcCacheService.getAllHazelcastInstances();
-		
-		log.debug("### Hazelcast instances: ");
-		
-		for (Iterator<HazelcastOSGiInstance> iterator = hcInstances.iterator(); iterator.hasNext();) {
-			HazelcastOSGiInstance instance = iterator.next();
-			log.debug("\tInstance: " + instance.getName());
-		}
+
+	public IdentityService getIdentService() {
+		return identService;
 	}
 
-	public void unbindHazelcastService(HazelcastOSGiService tradeServices, Map props) {
+	public void setIdentService(IdentityService identService) {
+		this.identService = identService;
+	}
+
+	public void bindHazelcastService(HazelcastInstance hcServices, Map props) {
+		this.hcCacheService = hcServices;
+
+		log.debug("### Hazelcast instance set. ");
+	}
+
+	public void unbindHazelcastService(HazelcastInstance tradeServices, Map props) {
 
 		log.debug("###Application->unbindHazelcastService()");
 
