@@ -12,17 +12,17 @@
         http://aries.apache.org/xmlns/jpa/v2.0.0 https://aries.apache.org/xmlns/jpa/v2.0.0">
 
 	<cm:property-placeholder
-		persistent-id="de.akrebs.cloud.core" update-strategy="reload">
+		persistent-id="de.akrebs.cloud.identity.backend.bdb" update-strategy="reload">
 		<cm:default-properties>
-			<cm:property name="realm.name" value="INVALID" />
+			<cm:property name="berkleydb.host.name" value="localhost" />
 		</cm:default-properties>
 	</cm:property-placeholder>
-		
-	<bean id="identService_Bean" class="de.akrebs.cloud.identity.impl.bdb.IdentityServiceImpl">
-		<property name="realmName" value="{{realm.name}}"></property>
+
+	<bean id="bdbService_Bean" class="de.akrebs.cloud.persistence.bdb.impl.IdentityServiceImpl">
+		<property name="hostName" value="{{berkleydb.host.name}}"></property>
 	</bean>
 
-	<service id="identService" ref="identService_Bean"
+	<service id="bdbIdentService" ref="bdbService_Bean"
 		interface="de.akrebs.cloud.identity.api.IdentityService" />
 
 </blueprint>

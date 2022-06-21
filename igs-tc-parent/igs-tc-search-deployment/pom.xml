@@ -66,7 +66,7 @@
 			<type>xml</type>
 			<scope>runtime</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.apache.karaf.features</groupId>
 			<artifactId>enterprise</artifactId>
@@ -74,7 +74,6 @@
 			<type>xml</type>
 			<scope>runtime</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.apache.karaf.cellar</groupId>
 			<artifactId>apache-karaf-cellar</artifactId>
@@ -151,19 +150,6 @@
 							see dependency in parent pom.xml! -->
 						<feature>jndi</feature>
 
-						<!-- CDI support for RESTful W/S -->
-						<!-- <feature>pax-cdi-web-openwebbeans</feature> -->
-
-
-						<!-- <feature>osgi-cdi-owb</feature> -->
-						<!-- <feature>osgi-cdi-owb-web</feature> -->
-						<!-- <feature>pax-web-http-whiteboard</feature> -->
-
-						<!-- Transaction support (JTA); defaults to Geronimo (alt: Narayana, Atomikos) and Aries tx-control -->
-						<!-- <feature>transaction</feature> -->
-						<!-- <feature version="[3.1,4)">transaction-manager-geronimo</feature> -->
-						<!-- <feature>pax-transx-tm</feature> -->
-
 						<!-- JDBC Support; defaults to PAX-JDBC -->
 						<!-- <feature>jdbc</feature> -->
 						<!-- <feature>pax-jdbc-config</feature> -->
@@ -178,16 +164,7 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<!-- Using CXF here, alternative would be Aries JAX-RS -->
-						<!-- <feature prerequisite="true">cxf-jaxrs</feature> -->
-						<!-- <feature prerequisite="true">cxf-jsr-json</feature> -->
-						<!-- <feature>cxf-http-async</feature> -->
-						<!-- <feature>cxf-http-jetty</feature> -->
-						<!-- <feature>cxf-commands</feature> -->
-
-						<!-- <feature>aries-jax-rs-whiteboard</feature> -->
-
-						<!-- OSGi HTTP whiteboard -->
+						<!-- OSGi Jetty runtime -->
 						<feature>pax-web-http-jetty</feature>
 
 						<!-- application -->
@@ -210,14 +187,7 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<!-- <bootFeature>pax-cdi-web-openwebbeans</bootFeature> -->
-
-						<!-- <bootFeature>cxf-jaxrs</bootFeature> -->
-						<!-- <bootFeature>cxf-jackson</bootFeature> -->
-						<!-- <bootFeature>cxf-http-jetty</bootFeature> -->
 						<bootFeature>pax-web-http-jetty</bootFeature>
-
-						<!-- <bootFeature>aries-jax-rs-whiteboard</bootFeature> -->
 
 						<bootFeature>igs-tc-search</bootFeature>
 
@@ -234,9 +204,6 @@
 						<!-- <blacklistedFeature>pax-jdbc-config</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-transx-tm-api</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-transx-tm-geronimo</blacklistedFeature> -->
-						<!-- <blacklistedFeature>transaction-manager-geronimo</blacklistedFeature> -->
-						<!-- <blacklistedFeature>transaction-api</blacklistedFeature> -->
-						<!-- <blacklistedFeature>transaction</blacklistedFeature> -->
 						<!-- <blacklistedFeature>jdbc</blacklistedFeature> -->
 						<!-- <blacklistedFeature>jpa</blacklistedFeature> -->
 						<!-- <blacklistedFeature>eclipselink</blacklistedFeature> -->

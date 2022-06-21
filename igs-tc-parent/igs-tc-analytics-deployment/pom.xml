@@ -83,32 +83,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.cxf.karaf</groupId> -->
-		<!-- <artifactId>apache-cxf</artifactId> -->
-		<!-- <classifier>features</classifier> -->
-		<!-- <type>xml</type> -->
-		<!-- <scope>runtime</scope> -->
-		<!-- </dependency> -->
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.aries.cdi</groupId> -->
-		<!-- <artifactId>aries-cdi-feature</artifactId> -->
-		<!-- <version>${aries-cdi.version}</version> -->
-		<!-- <classifier>features</classifier> -->
-		<!-- <type>xml</type> -->
-		<!-- <scope>runtime</scope> -->
-		<!-- </dependency> -->
-		
-		<!-- <dependency> -->
-		<!-- <groupId>org.ops4j.pax.cdi</groupId> -->
-		<!-- <artifactId>pax-cdi-features</artifactId> -->
-		<!-- <version>${pax.cdi.version}</version> -->
-		<!-- <classifier>features</classifier> -->
-		<!-- <type>xml</type> -->
-		<!-- <scope>runtime</scope> -->
-		<!-- </dependency> -->
-
 		<dependency>
 			<groupId>org.ops4j.pax.web</groupId>
 			<artifactId>pax-web-features</artifactId>
@@ -121,12 +95,6 @@
 			<groupId>org.apache.karaf</groupId>
 			<artifactId>org.apache.karaf.util</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.xml.parsers</groupId>
-			<artifactId>jaxp-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
@@ -188,9 +156,6 @@
 							see dependency in parent pom.xml! -->
 						<feature>jndi</feature>
 
-						<!-- CDI support for RESTful W/S -->
-						<feature>pax-cdi-web-openwebbeans</feature>
-
 						<!-- Transaction support (JTA); not used here, since we want to be stateless -->
 						<!-- <feature>transaction</feature> -->
 						<!-- <feature version="[3.1,4)">transaction-manager-geronimo</feature> -->
@@ -210,12 +175,7 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<!-- Using CXF here, alternative would be Aries JAX-RS -->
-						<!-- <feature>cxf-jaxrs</feature> -->
-						<!-- <feature>cxf-jackson</feature> -->
-						<!-- <feature>cxf-http-jetty</feature> -->
-						<!-- <feature>pax-web-http-jetty</feature> -->
-						<!-- <feature>pax-web-whiteboard</feature> -->
+						<feature>pax-web-http-jetty</feature>
 
 						<!-- application -->
 						<feature>igs-tc-analytics</feature>
@@ -231,14 +191,7 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<bootFeature>pax-cdi-web-openwebbeans</bootFeature>
-
-						<!-- <bootFeature>cxf-jaxrs</bootFeature> -->
-						<!-- <bootFeature>cxf-jackson</bootFeature> -->
-						<!-- <bootFeature>cxf-http-jetty</bootFeature> -->
-
 						<bootFeature>pax-web-http-jetty</bootFeature>
-						<bootFeature>pax-web-whiteboard</bootFeature>
 
 						<bootFeature>igs-tc-analytics</bootFeature>
 					</bootFeatures>

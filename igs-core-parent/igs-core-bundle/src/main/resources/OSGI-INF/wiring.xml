@@ -11,18 +11,14 @@
         http://aries.apache.org/xmlns/transactions/v2.0.0 https://aries.apache.org/xmlns/transactions/v2.0.0
         http://aries.apache.org/xmlns/jpa/v2.0.0 https://aries.apache.org/xmlns/jpa/v2.0.0">
 
-	<cm:property-placeholder
-		persistent-id="de.akrebs.cloud.identity.backend.ldap3" update-strategy="reload">
+	<cm:property-placeholder persistent-id="de.akrebs.cloud.identity.domain"
+		update-strategy="reload">
 		<cm:default-properties>
-			<cm:property name="ldap.host.name" value="localhost" />
+			<cm:property name="realm.name" value="INVALID" />
 		</cm:default-properties>
 	</cm:property-placeholder>
-		
-	<bean id="ldap3Service_Bean" class="de.akrebs.cloud.identity.impl.ldap3.IdentityServiceImpl">
-		<property name="hostName" value="{{ldap.host.name}}"></property>
-	</bean>
 
-	<service id="identService" ref="ldap3Service_Bean"
+	<reference-list id="idServiceRefs" member-type="service-object"
 		interface="de.akrebs.cloud.identity.api.IdentityService" />
 
 </blueprint>

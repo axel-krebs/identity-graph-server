@@ -7,6 +7,8 @@ import de.akrebs.cloud.identity.api.IdentityService;
 
 public class IdentityServiceImpl implements IdentityService {
 
+	String hostName;
+	
 	@Override
 	public Promise<Identity> find(String id) {
 		throw new RuntimeException("NIH");
@@ -16,6 +18,14 @@ public class IdentityServiceImpl implements IdentityService {
 	public boolean hasRealm() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	public String getHostName() {
+		return hostName;
+	}
+
+	public void setHostName(String hostName) {
+		this.hostName = hostName;
 	}
 
 }
