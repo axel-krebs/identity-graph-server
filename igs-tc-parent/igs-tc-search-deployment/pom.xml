@@ -40,6 +40,14 @@
 			<version>${project.version}</version>
 			<classifier>features</classifier>
 			<type>xml</type>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-karaf-features</artifactId>
+			<version>${project.version}</version>
+			<classifier>features</classifier>
+			<type>xml</type>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -102,7 +110,7 @@
 
 		<!-- exclude version in artifact -->
 		<finalName>${project.artifactId}</finalName>
-		
+
 		<resources>
 
 			<resource>
@@ -184,10 +192,8 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<!-- OSGi PAX HTTP runtime -->
-						<feature>pax-web-http-undertow</feature>
-
 						<!-- application -->
+						<feature>igs-cxf-undertow</feature>
 						<feature>igs-tc-search</feature>
 					</features>
 					<bootFeatures>
@@ -207,8 +213,7 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<bootFeature>pax-web-http-undertow</bootFeature>
-
+						<bootFeature>igs-cxf-undertow</bootFeature>
 						<bootFeature>igs-tc-search</bootFeature>
 
 					</bootFeatures>

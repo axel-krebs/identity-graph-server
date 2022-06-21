@@ -8,6 +8,8 @@ import java.util.List;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.container.AsyncResponse;
+import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 
 import org.osgi.service.component.annotations.Component;
@@ -31,21 +33,23 @@ public class SearchServiceREST implements SearchService {
 	@Path("/find")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Override
-	public List<Document> search() {
+	public void search(@Suspended AsyncResponse res) {
 
 		// Iterate list of looked-up documents
 
-		List<Document> res = new ArrayList<>();
+		List<Document> result = new ArrayList<>();
 		Document dummy;
 		try {
 			dummy = new Document(1L, "Dummy", new URL("https://usw"));
-			res.add(dummy);
+			result.add(dummy);
 		} catch (MalformedURLException e) {
-
+			
 			LOG.error("URL was malformed. {}", e.getMessage());
+			
+			res.cancel();
 		}
-
-		return res;
+		
+		res.resume(result);
 	}
 
 }

@@ -55,7 +55,6 @@
 					<instructions>
 						<Import-Package>de.akrebs.cloud.identity.api;version="${project.version}",
 							org.slf4j;resolution:=mandatory;version:="[1.7,2)",
-							com.hazelcast.core;version:="[3,)",
 						</Import-Package>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
 						<Private-Package>de.akrebs.cloud.services.impl</Private-Package>

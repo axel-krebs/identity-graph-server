@@ -12,9 +12,9 @@
 
 	<packaging>feature</packaging>
 
-	<artifactId>igs-karaf-features</artifactId>
+	<artifactId>igs-core-features</artifactId>
 
-	<name>IGS :: MicroProfile :: Karaf Features</name>
+	<name>IGS :: Core :: Karaf Features</name>
 
 	<description>Assemble the IGS bundles and create a deployable Karaf archive (KAR).</description>
 

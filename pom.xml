@@ -132,7 +132,7 @@
 		<pax.cdi.version>1.1.4</pax.cdi.version>
 		<pax.jdbc.version>1.5.3</pax.jdbc.version>
 		<!-- not supported by Cellar HTTP-balancer! Draws-in Jetty v9.4.46.v20220331 -->
-		<pax.web.version>8.0.2</pax.web.version>
+		<pax.web.version>7.4.4</pax.web.version>
 		<pax.keycloak.version>0.2.0</pax.keycloak.version>
 		<sling.version>2.25.5</sling.version>
 		<shiro.version>1.9.0</shiro.version>

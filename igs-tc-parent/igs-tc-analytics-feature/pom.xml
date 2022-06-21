@@ -30,6 +30,15 @@
 			<version>${project.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-tc-micro-features</artifactId>
+			<version>${project.version}</version>
+			<type>xml</type>
+			<classifier>features</classifier>
+			<scope>runtime</scope>
+		</dependency>
+		
 		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
 
 	</dependencies>

@@ -12,33 +12,117 @@
 
 	<packaging>feature</packaging>
 
-	<artifactId>igs-tc-search-feature</artifactId>
+	<artifactId>igs-tc-micro-features</artifactId>
 
-	<name>IGS :: Sample :: Search Feature</name>
+	<name>IGS :: Sample :: Karaf µ-Features</name>
 
-	<description>A sample search service.</description>
+	<description>Shared Karaf features for service deployments.</description>
 
 	<properties>
 		<karaf.features.plugin.version>2.4.4</karaf.features.plugin.version>
+		<woodstox.core-asl.version>4.4.1</woodstox.core-asl.version>
 	</properties>
 
 	<dependencies>
 
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-tc-search-bundle</artifactId>
-			<version>${project.version}</version>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.service.http.whiteboard</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-tc-micro-features</artifactId>
-			<version>${project.version}</version>
-			<type>xml</type>
-			<classifier>features</classifier>
+			<groupId>org.osgi</groupId>
+			<artifactId>org.osgi.service.jaxrs</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>jakarta.annotation</groupId>
+			<artifactId>jakarta.annotation-api</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.aries.spec</groupId>
+			<artifactId>org.apache.aries.javax.jax.rs-api</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.aries.jax.rs</groupId>
+			<artifactId>org.apache.aries.jax.rs.whiteboard</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.aries.jax.rs</groupId>
+			<artifactId>org.apache.aries.jax.rs.jackson</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.aries.jax.rs</groupId>
+			<artifactId>org.apache.aries.jax.rs.jaxb.json</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.aries.component-dsl</groupId>
+			<artifactId>org.apache.aries.component-dsl.component-dsl</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-base</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.jaxrs</groupId>
+			<artifactId>jackson-jaxrs-json-provider</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>woodstox-core-asl</artifactId>
+			<version>${woodstox.core-asl.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.woodstox</groupId>
+			<artifactId>stax2-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.woodstox</groupId>
+			<artifactId>woodstox-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -83,12 +167,12 @@
 				<extensions>true</extensions>
 				<configuration>
 					<markRuntimeScopeAsDependency>true</markRuntimeScopeAsDependency>
-					<!-- <aggregateFeatures>false</aggregateFeatures> -->
+					<aggregateFeatures>false</aggregateFeatures>
 				</configuration>
 				<executions>
 					<execution>
 						<id>verify-features</id>
-						<phase>verify-features</phase>
+						<phase>process-resources</phase>
 						<goals>
 							<goal>verify</goal>
 						</goals>
@@ -103,7 +187,7 @@
 					</execution>
 					<!-- Overwrite the KAR goal to prevent generation of feature.xml -->
 					<execution>
-						<id>add-to-kar</id>
+						<id>install-kar</id>
 						<phase>package</phase>
 						<goals>
 							<goal>kar</goal>

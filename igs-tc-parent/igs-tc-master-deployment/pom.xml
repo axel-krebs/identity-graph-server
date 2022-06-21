@@ -24,7 +24,7 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-karaf-features</artifactId>
+			<artifactId>igs-core-features</artifactId>
 			<version>${project.version}</version>
 			<classifier>features</classifier>
 			<type>xml</type>
@@ -188,15 +188,8 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<feature>pax-web-jetty</feature>
-						<feature>pax-web-jsp</feature>
-						<feature>pax-web-war</feature>
-
 						<!-- <feature>igs-master</feature> -->
-
-						<feature>pax-web-war</feature>
 						<feature>igs-master-admin</feature>
-						<feature>igs-aries-jaxrs</feature>
 					</features>
 					<bootFeatures>
 
@@ -208,21 +201,11 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<!-- <bootFeature>pax-cdi-web-openwebbeans</bootFeature> -->
-
 						<bootFeature>standard</bootFeature>
 						<bootFeature>transaction</bootFeature>
-
-						<!-- <bootFeature>cxf-jaxrs</bootFeature> -->
-						<!-- <bootFeature>cxf-jackson</bootFeature> -->
-						<!-- <bootFeature>cxf-http-jetty</bootFeature> -->
-						<bootFeature>pax-web-jetty</bootFeature>
-						<bootFeature>pax-web-jsp</bootFeature>
-						<bootFeature>pax-web-war</bootFeature>
-
+						
 						<!-- <bootFeature>igs-master</bootFeature> -->
 						<bootFeature>igs-master-admin</bootFeature>
-						<bootFeature>igs-aries-jaxrs</bootFeature>
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->

@@ -22,7 +22,7 @@
 		<module>igs-openid-connect-bundle</module>
 		<module>igs-saml2-bundle</module>
 		<module>igs-wsfed-bundle</module>
-		<module>igs-karaf-features</module>
+		<module>igs-core-features</module>
 	</modules>
 
 	<dependencies>

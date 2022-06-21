@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0"
+	name="igs-karaf-features-${project.version}">
+
+	<repository>mvn:org.ops4j.pax.web/pax-web-features/${pax.web.version}/xml/features</repository>
+	<!-- <repository>mvn:org.apache.cxf.karaf/apache-cxf/${karaf.cxf.version}/xml/features</repository> -->
+	<!-- <repository>mvn:org.apache.aries.cdi/aries-cdi-feature/${aries-cdi.version}/xml/features -->
+	<!-- </repository> -->
+
+	<feature name='igs-jakartee-api' version='${project.version}'>
+		<bundle>mvn:jakarta.annotation/jakarta.annotation-api/${jakarta.annotation-api.version}</bundle>
+		<bundle>mvn:jakarta.el/jakarta.el-api/${jakarta.el-api.version}</bundle>
+		<bundle>mvn:jakarta.enterprise/jakarta.enterprise.cdi-api/${jakarta.enterprise.cdi-api.version}
+		</bundle>
+		<bundle>mvn:jakarta.enterprise/jakarta.enterprise.lang-model/${jakarta.enterprise.lang-model.version}
+		</bundle>
+		<bundle>mvn:jakarta.inject/jakarta.inject-api/${jakarta.inject-api.version}</bundle>
+		<bundle>mvn:jakarta.interceptor/jakarta.interceptor-api/${jakarta.interceptor-api.version}
+		</bundle>
+		<bundle>mvn:jakarta.json.bind/jakarta.json.bind-api/${jakarta.json.bind-api.version}</bundle>
+		<bundle>mvn:jakarta.json/jakarta.json-api/${jakarta.json-api.version}</bundle>
+		<bundle>mvn:jakarta.ws.rs/jakarta.ws.rs-api/${jakarta.ws.rs-api.version}</bundle>
+	</feature>
+
+	<!-- The 'domain controller' -->
+	<feature name='igs-master' version='${project.version}'>
+		<feature>igs-jakartee-api</feature>
+		<feature>pax-http</feature>
+		<!-- <feature>osgi-cdi-owb-web</feature> -->
+		<bundle>mvn:de.akrebs.cloud/igs-core-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-backend-bdb-fragment/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-backend-ldap3-fragment/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-oauth2-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-saml2-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-openid-connect-bundle/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-wsfed-bundle/${project.version}</bundle>
+	</feature>
+
+	<!-- The cloud directory server with admin frontend -->
+	<feature name='igs-master-admin' version='${project.version}'>
+		<feature>igs-master</feature>
+		<bundle>mvn:de.akrebs.cloud/igs-admin-bundle/${project.version}</bundle>
+	</feature>
+
+</features>

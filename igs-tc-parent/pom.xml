@@ -19,7 +19,8 @@
 	<description>Features a µ-Services architecture using the Karaf F/W.</description>
 
 	<modules>
-		<module>igs-tc-master</module>
+		<module>igs-tc-master-deployment</module>
+		<module>igs-tc-micro-features</module>
 		<module>igs-tc-analytics-bundle</module>
 		<module>igs-tc-analytics-deployment</module>
 		<module>igs-tc-analytics-feature</module>

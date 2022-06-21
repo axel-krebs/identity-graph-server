@@ -2,17 +2,16 @@
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0"
 	name="igs-search-features-${project.version}">
 
-	<repository>mvn:${project.groupId}/${project.artifactId}/${project.version}/xml/features
+	<repository>mvn:${project.groupId}/igs-tc-micro-features/${project.version}/xml/features
 	</repository>
+	
 	<!-- <repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/${aries.jax-rs.version}/xml/features -->
 	<!-- </repository> not working -->
 	<!-- <repository>mvn:org.code-house.jackson/${jackson.version}/xml/features</repository> -->
-	<repository>mvn:${project.groupId}/igs-karaf-features/${project.version}/xml/features
-	</repository>
 
 	<feature name='igs-tc-search' version='${project.version}'>
 		<feature prerequisite="true">scr</feature>
-		<feature>igs-aries-jaxrs</feature>
+		<feature>igs-cxf-undertow</feature>
 		<bundle>mvn:de.akrebs.cloud/igs-tc-search-bundle/${project.version}</bundle>
 	</feature>
 

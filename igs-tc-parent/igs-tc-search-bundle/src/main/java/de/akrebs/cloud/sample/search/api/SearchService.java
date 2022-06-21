@@ -1,9 +1,9 @@
 package de.akrebs.cloud.sample.search.api;
 
-import java.util.List;
+import javax.ws.rs.container.AsyncResponse;
 
 public interface SearchService {
 
-	public List<Document> search();
+	public void search(AsyncResponse res);
 	
 }
