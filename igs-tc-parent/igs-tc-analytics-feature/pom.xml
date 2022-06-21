@@ -29,7 +29,7 @@
 			<artifactId>igs-tc-analytics-bundle</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
+
 		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
 
 	</dependencies>
@@ -88,7 +88,7 @@
 							<features>
 								<feature>log</feature>
 							</features>
-							<!-- <enableGeneration>false</enableGeneration> -->
+							<enableGeneration>false</enableGeneration>
 							<!-- <aggregateFeatures>true</aggregateFeatures> -->
 							<!-- <markRuntimeScopeAsDependency>true</markRuntimeScopeAsDependency> -->
 							<!-- We must import trans. dep. because Jakarta libs not available in Karaf yet! -->

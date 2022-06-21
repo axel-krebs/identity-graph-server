@@ -1,4 +1,4 @@
-FROM axel9691/openjdk:17
+FROM axel9691/open_jdk:17
 
 LABEL Axel Krebs
 

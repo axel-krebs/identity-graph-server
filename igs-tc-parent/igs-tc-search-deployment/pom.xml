@@ -19,24 +19,7 @@
 	<description>Search service using the Karaf client feature.</description>
 
 	<properties>
-		<aries.jax-rs.features.version>2.0.1</aries.jax-rs.features.version>
 	</properties>
-
-	<dependencyManagement>
-
-		<dependencies>
-
-			<dependency>
-				<groupId>org.apache.karaf</groupId>
-				<artifactId>karaf-bom</artifactId>
-				<version>${karaf.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-		</dependencies>
-
-	</dependencyManagement>
 
 	<dependencies>
 
@@ -44,7 +27,7 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-karaf-features</artifactId>
+			<artifactId>igs-tc-search-feature</artifactId>
 			<version>${project.version}</version>
 			<classifier>features</classifier>
 			<type>xml</type>
@@ -53,7 +36,7 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-tc-search-feature</artifactId>
+			<artifactId>igs-karaf-features</artifactId>
 			<version>${project.version}</version>
 			<classifier>features</classifier>
 			<type>xml</type>
@@ -101,19 +84,10 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.apache.aries.cdi</groupId>
-			<artifactId>aries-cdi-feature</artifactId>
-			<version>${aries-cdi.version}</version>
+			<groupId>org.ops4j.pax.web</groupId>
+			<artifactId>pax-web-features</artifactId>
 			<classifier>features</classifier>
 			<type>xml</type>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.aries.jax.rs</groupId>
-			<artifactId>org.apache.aries.jax.rs.features</artifactId>
-			<version>${aries.jax-rs.features.version}</version>
-			<type>pom</type>
 			<scope>runtime</scope>
 		</dependency>
 
@@ -121,12 +95,6 @@
 			<groupId>org.apache.karaf</groupId>
 			<artifactId>org.apache.karaf.util</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.xml.parsers</groupId>
-			<artifactId>jaxp-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
@@ -153,29 +121,22 @@
 				<configuration>
 					<javase>${java.version}</javase>
 					<framework>framework</framework>
+					<includeTransitiveDependency>true</includeTransitiveDependency>
 					<libraries>
 						<!-- Add libraries not contained in JDK since version 9 -->
 						<!-- <library>mvn:org.apache.karaf.diagnostic/org.apache.karaf.diagnostic.boot/${karaf.version};type:=boot</library> -->
 						<!-- <library>mvn:org.apache.karaf.jaas/org.apache.karaf.jaas.boot/${karaf.version};type:=boot</library> -->
 					</libraries>
-					<includeTransitiveDependency>true</includeTransitiveDependency>
 					<features>
 
-						<!-- <feature prerequisite="true">eventadmin</feature> -->
+						<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
+							management,bundle,config,deployer,diagnostic,feature,instance,kar,log,package,service,system -->
 						<feature prerequisite="true">standard</feature>
-						<feature prerequisite="true">jaas-boot</feature>
-						<feature prerequisite="true">log</feature>
-						<feature prerequisite="true">scheduler</feature>
-						<feature prerequisite="true">scr</feature>
-						<feature prerequisite="true">shell-compat</feature>
-						<feature prerequisite="true">ssh</feature>
-						<feature prerequisite="true">wrapper</feature>
+						<feature>management</feature>
 
 						<!-- Aries Blueprint support (service) -->
 						<feature prerequisite="true">aries-blueprint</feature>
 						<feature prerequisite="true">aries-proxy</feature>
-						<feature prerequisite="true">aries-jax-rs-whiteboard</feature>
-						<feature prerequisite="true">aries-jax-rs-whiteboard-jackson</feature>
 
 						<feature>cellar</feature>
 						<!-- <feature>cellar-cloud</feature> -->
@@ -189,11 +150,17 @@
 						<!-- "EE" feature stack; 'jndi' is "Apache Aries JNDI 1.0.0"; Alternatively, PAX-CDI can be used, 
 							see dependency in parent pom.xml! -->
 						<feature>jndi</feature>
-						<feature>osgi-cdi-owb</feature>
+
+						<!-- CDI support for RESTful W/S -->
+						<!-- <feature>pax-cdi-web-openwebbeans</feature> -->
+
+
+						<!-- <feature>osgi-cdi-owb</feature> -->
 						<!-- <feature>osgi-cdi-owb-web</feature> -->
 						<!-- <feature>pax-web-http-whiteboard</feature> -->
+
 						<!-- Transaction support (JTA); defaults to Geronimo (alt: Narayana, Atomikos) and Aries tx-control -->
-						<feature>transaction</feature>
+						<!-- <feature>transaction</feature> -->
 						<!-- <feature version="[3.1,4)">transaction-manager-geronimo</feature> -->
 						<!-- <feature>pax-transx-tm</feature> -->
 
@@ -211,39 +178,54 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
+						<!-- Using CXF here, alternative would be Aries JAX-RS -->
+						<!-- <feature prerequisite="true">cxf-jaxrs</feature> -->
+						<!-- <feature prerequisite="true">cxf-jsr-json</feature> -->
+						<!-- <feature>cxf-http-async</feature> -->
+						<!-- <feature>cxf-http-jetty</feature> -->
+						<!-- <feature>cxf-commands</feature> -->
+
+						<!-- <feature>aries-jax-rs-whiteboard</feature> -->
+
+						<!-- OSGi HTTP whiteboard -->
+						<feature>pax-web-http-jetty</feature>
+
 						<!-- application -->
-						<feature>igs-mp-all</feature>
 						<feature>igs-tc-search</feature>
 					</features>
 					<bootFeatures>
 
-						<!-- Aries container used by IGS bundles -->
+						<bootFeature>standard</bootFeature>
+						<feature>jaas-boot</feature>
+						<feature>scheduler</feature>
+						<feature>scr</feature>
+						<feature>wrapper</feature>
+						<!-- <feature prerequisite="true">eventadmin</feature> -->
+
 						<bootFeature>aries-blueprint</bootFeature>
 						<bootFeature>aries-proxy</bootFeature>
-						<feature>aries-jax-rs-whiteboard</feature>
-						<feature>aries-jax-rs-whiteboard-jackson</feature>
 
-						<!-- Karaf Cellar used for IGS cluster -->
 						<bootFeature>cellar</bootFeature>
 
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
-						<!-- <bootFeature>scr</bootFeature> -->
 
-						<!-- Karaf 'standard' features; this installs automatically: pax-url-wrap,shell,shell-compat,feature,jaas,ssh, 
-							management,bundle,config,deployer,diagnostic,feature, instance,kar,log,package,service,system -->
-						<bootFeature>standard</bootFeature>
-						<bootFeature>transaction</bootFeature>
-						<!-- <bootFeature>wrapper</bootFeature> -->
+						<!-- <bootFeature>pax-cdi-web-openwebbeans</bootFeature> -->
 
-						<bootFeature>igs-mp-all</bootFeature>
+						<!-- <bootFeature>cxf-jaxrs</bootFeature> -->
+						<!-- <bootFeature>cxf-jackson</bootFeature> -->
+						<!-- <bootFeature>cxf-http-jetty</bootFeature> -->
+						<bootFeature>pax-web-http-jetty</bootFeature>
+
+						<!-- <bootFeature>aries-jax-rs-whiteboard</bootFeature> -->
+
 						<bootFeature>igs-tc-search</bootFeature>
+
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->
 
 					<blacklistedFeatures>
-						<feature>pax-web-*</feature>
 						<!-- <blacklistedFeature>pax-jdbc-spec</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-transx-tm</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-jdbc</blacklistedFeature> -->

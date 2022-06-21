@@ -46,6 +46,20 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>CeylonLang-Releases</id>
+			<url>https://modules.ceylon-lang.org/maven/1/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>Mulesoft</id>
+			<url>https://repository.mulesoft.org/nexus/content/repositories/public/</url>
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -58,25 +72,8 @@
 
 	<modules>
 		<!-- Auth server -->
-		<module>igs-core-bundle</module>
-		<module>igs-core-backend-bdb-fragment</module>
-		<module>igs-core-backend-ldap3-fragment</module>
-		<module>igs-oauth2-bundle</module>
-		<module>igs-openid-connect-bundle</module>
-		<module>igs-saml2-bundle</module>
-		<module>igs-wsfed-bundle</module>
+		<module>igs-core-parent</module>
 		<module>igs-admin-bundle</module>
-		<!-- MicroProfile support -->
-		<module>igs-mp-config-bundle</module>
-		<module>igs-mp-faulttolerance-bundle</module>
-		<module>igs-mp-health-bundle</module>
-		<module>igs-mp-jwt-bundle</module>
-		<module>igs-mp-metrics-bundle</module>
-		<module>igs-mp-openapi-bundle</module>
-		<module>igs-mp-opentracing-bundle</module>
-		<module>igs-mp-restclient-bundle</module>
-		<!-- Targeted platform: Karaf -->
-		<module>igs-karaf-features</module>
 		<!-- show case / test -->
 		<module>igs-tc-parent</module>
 	</modules>
@@ -84,163 +81,171 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<!-- Define target platform -->
-
-		<osgi.version>8.0.0</osgi.version>
-		<osgi.compendium.version>7.0.0</osgi.compendium.version>
-		<osgi.enterprise.version>5.0.0</osgi.enterprise.version>
-		<osgi.annotation.version>8.1.0</osgi.annotation.version>
-		<osgi.log.service.version>1.5.0</osgi.log.service.version>
-		<osgi.cdi.version>1.0.1</osgi.cdi.version>
-		<osgi.service.component.annotations.version>1.5.0</osgi.service.component.annotations.version>
-		<osgi.service.metatype.annotations.version>1.4.1</osgi.service.metatype.annotations.version>
-		<osgi.annotation.bundle.version>2.0.0</osgi.annotation.bundle.version>
-
-		<!-- This is needed for the plugin only -->
-		<karaf.version>4.4.0</karaf.version>
-		<karaf.cellar.version>4.2.1</karaf.cellar.version>
-		<blueprint.maven.plugin.annotation.version>1.3.0</blueprint.maven.plugin.annotation.version>
-		<aries.blueprint.annotation.version>1.0.1</aries.blueprint.annotation.version>
-		<aries-cdi.version>1.1.5</aries-cdi.version>
-		<pax.cdi.version>1.1.4</pax.cdi.version>
-		<pax.jdbc.version>1.5.3</pax.jdbc.version>
-		<pax.web.version>8.0.3</pax.web.version> <!-- not supported by Cellar HTTP-balancer! -->
-		<pax.keycloak.version>0.2.0</pax.keycloak.version>
-		<sling.version>2.25.5</sling.version>
-		<shiro.version>1.9.0</shiro.version>
-		<glassfish.version>3.0.2</glassfish.version>
-
-		<!-- Other API: logging etc. -->
-		<slf4j.api.version>1.7.36</slf4j.api.version>
+		<!-- API support -->
 		<java.version>11</java.version>
 		<java.ee.version>8.0.1</java.ee.version>
 		<microprofile.version>5.0</microprofile.version>
 		<jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
 		<jakarta.el-api.version>5.0.0</jakarta.el-api.version>
 		<jakarta.enterprise.cdi-api.version>4.0.1</jakarta.enterprise.cdi-api.version>
+		<jakarta.enterprise.lang-model.version>4.0.1</jakarta.enterprise.lang-model.version>
 		<jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
+		<jakarta.interceptor-api.version>2.1.0</jakarta.interceptor-api.version>
 		<jakarta.json.bind-api.version>3.0.0</jakarta.json.bind-api.version>
 		<jakarta.json-api.version>2.1.0</jakarta.json-api.version>
+		<jakarta.servlet-api.version>4.0.4</jakarta.servlet-api.version>
 		<jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
+		<jakarta.xml.bind-api.version>4.0.0</jakarta.xml.bind-api.version>
+		<jackson.version>2.9.6</jackson.version>
+		<woodstox.version>6.2.8</woodstox.version>
+		<woodstox.stax2-api.version>4.2.1</woodstox.stax2-api.version>
+		<slf4j.api.version>1.7.36</slf4j.api.version>
+
+		<!-- Define target platform -->
+
+		<osgi.version>7.0.0</osgi.version>
+		<osgi.annotation.version>8.1.0</osgi.annotation.version>
+		<osgi.compendium.version>7.0.0</osgi.compendium.version>
+		<osgi.cdi.version>1.0.1</osgi.cdi.version>
+		<osgi.enterprise.version>5.0.0</osgi.enterprise.version>
+		<osgi.log.service.version>1.5.0</osgi.log.service.version>
+		<osgi.service.component.annotations.version>1.5.0</osgi.service.component.annotations.version>
+		<osgi.service.http.whiteboard.version>1.1.1</osgi.service.http.whiteboard.version>
+		<osgi.service.jaxrs.version>1.0.1</osgi.service.jaxrs.version>
+		<osgi.service.metatype.annotations.version>1.4.1</osgi.service.metatype.annotations.version>
+		<osgi.util.function.version>1.2.0</osgi.util.function.version>
+		<osgi.util.promise.version>1.2.0</osgi.util.promise.version>
+		<osgi.annotation.bundle.version>2.0.0</osgi.annotation.bundle.version>
+
+		<!-- Runtime support -->
+
+		<glassfish.version>4.4.0</glassfish.version>
+		<karaf.version>4.4.0</karaf.version>
+		<karaf.cellar.version>4.2.1</karaf.cellar.version>
+		<karaf.cxf.version>3.5.2</karaf.cxf.version>
+		<servicemix.specs.version>2.9.0</servicemix.specs.version>
+		<!-- This is needed for the plugin only -->
+		<blueprint.maven.plugin.annotation.version>1.3.0</blueprint.maven.plugin.annotation.version>
+		<aries.blueprint.annotation.version>1.0.1</aries.blueprint.annotation.version>
+		<aries-cdi.version>1.1.5</aries-cdi.version>
+		<aries.jax-rs.version>2.0.1</aries.jax-rs.version>
+		<pax.cdi.version>1.1.4</pax.cdi.version>
+		<pax.jdbc.version>1.5.3</pax.jdbc.version>
+		<!-- not supported by Cellar HTTP-balancer! Draws-in Jetty v9.4.46.v20220331 -->
+		<pax.web.version>8.0.2</pax.web.version>
+		<pax.keycloak.version>0.2.0</pax.keycloak.version>
+		<sling.version>2.25.5</sling.version>
+		<shiro.version>1.9.0</shiro.version>
+
 	</properties>
 
 	<dependencyManagement>
 
 		<dependencies>
 
-			<!-- target the OSGi platform -->
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.core</artifactId>
-				<version>${osgi.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.cmpn</artifactId>
-				<version>${osgi.compendium.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.enterprise</artifactId>
-				<version>${osgi.enterprise.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>osgi.annotation</artifactId>
-				<version>${osgi.annotation.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.service.log</artifactId>
-				<version>${osgi.log.service.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.service.cdi</artifactId>
-				<version>${osgi.cdi.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.service.component.annotations</artifactId>
-				<version>${osgi.service.component.annotations.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.service.metatype.annotations</artifactId>
-				<version>${osgi.service.metatype.annotations.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>org.osgi</groupId>
-				<artifactId>org.osgi.annotation.bundle</artifactId>
-				<version>${osgi.annotation.bundle.version}</version>
-			</dependency>
-
 			<!-- JEE API supported by Aries blueprint annotations; needed for bundles as well as Karaf runtime, 
-				therefore defined in parent. Jakarta-EE not yet supported in all modules! -->
+				therefore defined in parent. Jakarta-EE not yet supported in all modules! Therefore, deps to be replaced 
+				by Jakarta API, s.b. -->
 
 			<dependency>
 				<groupId>javax</groupId>
 				<artifactId>javaee-api</artifactId>
 				<version>${java.ee.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.inject</groupId>
 				<artifactId>javax.inject</artifactId>
 				<version>1</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.enterprise</groupId>
 				<artifactId>cdi-api</artifactId>
-				<!-- <version>1.2</version> -->
-				<version>2.0.SP1</version>
+				<version>1.2</version>
+				<!-- <version>2.0.SP1</version> -->
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.persistence</groupId>
 				<artifactId>persistence-api</artifactId>
 				<version>1.0.2</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.transaction</groupId>
 				<artifactId>javax.transaction-api</artifactId>
-				<!-- <version>1.2</version> -->
-				<version>1.3</version>
+				<version>1.2</version>
+				<!-- <version>1.3</version> -->
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.annotation</groupId>
 				<artifactId>javax.annotation-api</artifactId>
 				<version>1.3.2</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.xml.parsers</groupId>
-				<artifactId>jaxp-api</artifactId>
-				<version>1.4.5</version>
-			</dependency>
-
-			<dependency>
-				<groupId>javax.ws.rs</groupId>
-				<artifactId>javax.ws.rs-api</artifactId>
-				<version>2.1.1</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>javax.servlet</groupId>
 				<artifactId>javax.servlet-api</artifactId>
 				<version>4.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.xml.ws</groupId>
+				<artifactId>jaxws-api</artifactId>
+				<version>2.3.1</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.ws.rs</groupId>
+				<artifactId>javax.ws.rs-api</artifactId>
+				<!-- Version used by CXF; newer is 2.1.1 -->
+				<version>2.1</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.json.bind</groupId>
+				<artifactId>javax.json.bind-api</artifactId>
+				<version>1.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.json</groupId>
+				<artifactId>javax.json-api</artifactId>
+				<version>1.1.4</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.xml.parsers</groupId>
+				<artifactId>jaxp-api</artifactId>
+				<version>1.4.5</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>2.3.1</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.xml.stream</groupId>
+				<artifactId>stax-api</artifactId>
+				<version>1.0-2</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<!-- Note: These are not yet supported by Aries blueprint, however can be used with MP v4.0 -->
@@ -249,6 +254,7 @@
 				<groupId>jakarta.annotation</groupId>
 				<artifactId>jakarta.annotation-api</artifactId>
 				<version>${jakarta.annotation-api.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
@@ -259,9 +265,23 @@
 			</dependency>
 
 			<dependency>
+				<groupId>jakarta.enterprise</groupId>
+				<artifactId>jakarta.enterprise.lang-model</artifactId>
+				<version>${jakarta.enterprise.lang-model.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
 				<groupId>jakarta.inject</groupId>
 				<artifactId>jakarta.inject-api</artifactId>
 				<version>${jakarta.inject-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>jakarta.interceptor</groupId>
+				<artifactId>jakarta.interceptor-api</artifactId>
+				<version>${jakarta.interceptor-api.version}</version>
 				<scope>provided</scope>
 			</dependency>
 
@@ -280,6 +300,13 @@
 			</dependency>
 
 			<dependency>
+				<groupId>jakarta.servlet</groupId>
+				<artifactId>jakarta.servlet-api</artifactId>
+				<version>${jakarta.servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
 				<groupId>jakarta.ws.rs</groupId>
 				<artifactId>jakarta.ws.rs-api</artifactId>
 				<version>${jakarta.ws.rs-api.version}</version>
@@ -290,9 +317,8 @@
 				<groupId>jakarta.persistence</groupId>
 				<artifactId>jakarta.persistence-api</artifactId>
 				<version>3.1.0</version>
-				<scope>provided</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>jakarta.transaction</groupId>
 				<artifactId>jakarta.transaction-api</artifactId>
@@ -301,50 +327,203 @@
 			</dependency>
 
 			<dependency>
-				<groupId>org.eclipse.microprofile</groupId>
-				<artifactId>microprofile</artifactId>
-				<version>${microprofile.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
+				<groupId>jakarta.xml.bind</groupId>
+				<artifactId>jakarta.xml.bind-api</artifactId>
+				<version>${jakarta.xml.bind-api.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
-			<!-- Memento: The API should be declared as dependency in the project where it's used. -->
+			<!-- targeted OSGi standard -->
 
-			<!-- Supporting libraries (commons, logging etc.) -->
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.core</artifactId>
+				<version>${osgi.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.cmpn</artifactId>
+				<version>${osgi.compendium.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.enterprise</artifactId>
+				<version>${osgi.enterprise.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>osgi.annotation</artifactId>
+				<version>${osgi.annotation.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.util.promise</artifactId>
+				<version>${osgi.util.promise.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.util.function</artifactId>
+				<version>${osgi.util.function.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.service.cdi</artifactId>
+				<version>${osgi.cdi.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.service.component.annotations</artifactId>
+				<version>${osgi.service.component.annotations.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.service.http.whiteboard</artifactId>
+				<version>${osgi.service.http.whiteboard.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.service.jaxrs</artifactId>
+				<version>${osgi.service.jaxrs.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.service.log</artifactId>
+				<version>${osgi.log.service.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.service.metatype.annotations</artifactId>
+				<version>${osgi.service.metatype.annotations.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.osgi</groupId>
+				<artifactId>org.osgi.annotation.bundle</artifactId>
+				<version>${osgi.annotation.bundle.version}</version>
+				<scope>provided</scope>
+			</dependency>
 
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-api</artifactId>
 				<version>${slf4j.api.version}</version>
+				<scope>provided</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.apache.johnzon</groupId>
-				<artifactId>johnzon-core</artifactId>
-				<version>1.2.18</version>
-			</dependency>
-
-			<!-- DI container, not Spring (Aries); maybe already contained in Karaf BOM, s. below -->
+			<!-- Targeted container, container specs, container extendsions wtc. -->
 
 			<!-- <dependency> -->
-			<!-- <groupId>org.apache.aries.blueprint</groupId> -->
-			<!-- <artifactId>org.apache.aries.blueprint.annotation</artifactId> -->
-			<!-- <version>${aries.blueprint.annotation.version}</version> -->
+			<!-- <groupId>org.apache.geronimo.specs</groupId> -->
+			<!-- <artifactId>geronimo-jaxrs_2.1_spec</artifactId> -->
+			<!-- <version>1.1</version> -->
+			<!-- </dependency> -->
+
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.servicemix.specs</groupId> -->
+			<!-- <artifactId>org.apache.servicemix.specs.jaxrs-api-2.1</artifactId> -->
+			<!-- <version>${servicemix.specs.version}</version> -->
 			<!-- <scope>provided</scope> -->
 			<!-- </dependency> -->
 
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.servicemix.specs</groupId> -->
+			<!-- <artifactId>org.apache.servicemix.specs.json-api-1.1</artifactId> -->
+			<!-- <version>${servicemix.specs.version}</version> -->
+			<!-- <scope>provided</scope> -->
+			<!-- </dependency> -->
+
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.servicemix.bundles</groupId> -->
+			<!-- <artifactId>org.apache.servicemix.bundles.spring-beans</artifactId> -->
+			<!-- <version>3.2.11.RELEASE_1</version> -->
+			<!-- <version>5.3.18_1</version> -->
+			<!-- <optional>true</optional> -->
+			<!-- </dependency> -->
+
 			<dependency>
-				<groupId>org.apache.servicemix.bundles</groupId>
-				<artifactId>org.apache.servicemix.bundles.spring-beans</artifactId>
-				<!-- <version>3.2.11.RELEASE_1</version> -->
-				<version>5.3.18_1</version>
-				<optional>true</optional>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>karaf-bom</artifactId>
+				<version>${karaf.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
 			</dependency>
 
 			<dependency>
-				<groupId>org.apache.servicemix.specs</groupId>
-				<artifactId>org.apache.servicemix.specs.json-api-1.1</artifactId>
-				<version>2.9.0</version>
+				<groupId>org.apache.karaf.features</groupId>
+				<artifactId>framework</artifactId>
+				<version>${karaf.version}</version>
+				<type>kar</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.karaf.features</groupId>
+				<artifactId>standard</artifactId>
+				<version>${karaf.version}</version>
+				<classifier>features</classifier>
+				<type>xml</type>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.karaf.features</groupId>
+				<artifactId>enterprise</artifactId>
+				<version>${karaf.version}</version>
+				<classifier>features</classifier>
+				<type>xml</type>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.karaf.cellar</groupId>
+				<artifactId>apache-karaf-cellar</artifactId>
+				<version>${karaf.cellar.version}</version>
+				<classifier>features</classifier>
+				<type>xml</type>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.karaf</groupId>
+				<artifactId>org.apache.karaf.util</artifactId>
+				<version>${karaf.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.cxf.karaf</groupId>
+				<artifactId>apache-cxf</artifactId>
+				<version>${karaf.cxf.version}</version>
+				<classifier>features</classifier>
+				<type>xml</type>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-bom</artifactId>
+				<version>${karaf.cxf.version}</version>
+				<type>pom</type>
 			</dependency>
 
 			<dependency>
@@ -352,13 +531,46 @@
 				<artifactId>blueprint-maven-plugin-annotation</artifactId>
 				<version>${blueprint.maven.plugin.annotation.version}</version>
 				<type>bundle</type>
+				<scope>provided</scope>
 			</dependency>
 
 			<dependency>
 				<groupId>org.apache.aries.cdi</groupId>
-				<artifactId>aries-cdi-feature</artifactId>
-				<version>1.1.5</version>
+				<artifactId>org.apache.aries.cdi.bom</artifactId>
+				<version>${aries-cdi.version}</version>
 				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.aries.jax.rs</groupId> -->
+			<!-- <artifactId>org.apache.aries.jax.rs.features</artifactId> -->
+			<!-- <version>2.0.1</version> -->
+			<!-- <type>pom</type> -->
+			<!-- </dependency> -->
+
+			<dependency>
+				<groupId>org.apache.aries.spec</groupId>
+				<artifactId>org.apache.aries.javax.jax.rs-api</artifactId>
+				<version>1.0.1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.jax.rs</groupId>
+				<artifactId>org.apache.aries.jax.rs.whiteboard</artifactId>
+				<version>${aries.jax-rs.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.jax.rs</groupId>
+				<artifactId>org.apache.aries.jax.rs.jackson</artifactId>
+				<version>${aries.jax-rs.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.aries.blueprint</groupId>
+				<artifactId>org.apache.aries.blueprint.webosgi</artifactId>
+				<version>1.0.1</version>
 			</dependency>
 
 			<dependency>
@@ -372,6 +584,22 @@
 				<groupId>org.apache.aries.rsa</groupId>
 				<artifactId>rsa-features</artifactId>
 				<version>1.16.1</version>
+				<type>pom</type>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.web</groupId>
+				<artifactId>pax-web-features</artifactId>
+				<version>${pax.web.version}</version>
+				<classifier>features</classifier>
+				<type>xml</type>
+				<scope>runtime</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.ops4j.pax.keycloak</groupId>
+				<artifactId>pax-keycloak-features</artifactId>
+				<version>${pax.keycloak.version}</version>
 				<type>pom</type>
 			</dependency>
 
@@ -404,66 +632,7 @@
 				<type>pom</type>
 			</dependency>
 
-			<dependency>
-				<groupId>org.ops4j.pax.web</groupId>
-				<artifactId>pax-web-features</artifactId>
-				<version>${pax.web.version}</version>
-				<type>pom</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.ops4j.pax.keycloak</groupId>
-				<artifactId>pax-keycloak-features</artifactId>
-				<version>${pax.keycloak.version}</version>
-				<type>pom</type>
-			</dependency>
-
-			<!-- Targeted container frameworks -->
-
-			<dependency>
-				<groupId>org.apache.karaf</groupId>
-				<artifactId>karaf-bom</artifactId>
-				<version>${karaf.version}</version>
-				<type>pom</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.karaf.features</groupId>
-				<artifactId>framework</artifactId>
-				<version>${karaf.version}</version>
-				<type>kar</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.karaf.features</groupId>
-				<artifactId>standard</artifactId>
-				<version>${karaf.version}</version>
-				<classifier>features</classifier>
-				<type>xml</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.karaf.features</groupId>
-				<artifactId>enterprise</artifactId>
-				<version>${karaf.version}</version>
-				<classifier>features</classifier>
-				<type>xml</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.karaf.cellar</groupId>
-				<artifactId>apache-karaf-cellar</artifactId>
-				<version>${karaf.cellar.version}</version>
-				<classifier>features</classifier>
-				<type>xml</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.apache.karaf</groupId>
-				<artifactId>org.apache.karaf.util</artifactId>
-				<version>${karaf.version}</version>
-			</dependency>
-
+			<!-- old! -->
 			<dependency>
 				<groupId>org.glassfish.jaxb</groupId>
 				<artifactId>jaxb-bom</artifactId>
@@ -471,43 +640,46 @@
 				<type>pom</type>
 			</dependency>
 
+			<!-- Supporting libraries (commons, logging etc.) -->
+
 			<dependency>
-				<groupId>org.code-house.jackson</groupId>
-				<artifactId>features</artifactId>
-				<version>2.8.11</version>
+				<groupId>com.fasterxml.woodstox</groupId>
+				<artifactId>woodstox-core</artifactId>
+				<version>${woodstox.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.codehaus.woodstox</groupId>
+				<artifactId>stax2-api</artifactId>
+				<version>${woodstox.stax2-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.fasterxml.jackson</groupId>
+				<artifactId>jackson-bom</artifactId>
+				<version>${jackson.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Apache Johnzon is an implementation of JSR-353 (JavaTM API for JSON Processing) -->
+			<dependency>
+				<groupId>org.apache.johnzon</groupId>
+				<artifactId>johnzon</artifactId>
+				<version>1.2.18</version>
+				<type>pom</type>
+				<scope>import</scope>
+				<optional>true</optional>
 			</dependency>
 
 		</dependencies>
+
 	</dependencyManagement>
 
-	<dependencies>
-
-		<!-- Dependencies used in OSGi bundles as well as Aries Blueprint; scope should be 'provided'. -->
-
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi.core</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.osgi</groupId>
-			<artifactId>osgi.cmpn</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Pls. bundle-specific libs in corresponding bundle (layered arch.) -->
-
-	</dependencies>
-
 	<build>
+
 		<pluginManagement>
+
 			<plugins>
 
 				<plugin>
@@ -592,6 +764,7 @@
 				</plugin>
 
 			</plugins>
+
 		</pluginManagement>
 
 	</build>

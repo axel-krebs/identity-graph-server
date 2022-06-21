@@ -128,6 +128,13 @@
 		<!-- <scope>runtime</scope> -->
 		<!-- </dependency> -->
 
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.aries.jax.rs.cxf.repackage</groupId> -->
+		<!-- <artifactId>org.apache.aries.jax.rs.cxf.repackage</artifactId> -->
+		<!-- <version>1.0.10</version> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+		
 		<!-- This is already provided by Karaf runtime feature repos -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.ops4j.pax.jdbc</groupId> -->

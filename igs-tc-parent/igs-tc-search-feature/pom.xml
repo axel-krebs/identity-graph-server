@@ -16,7 +16,7 @@
 
 	<name>IGS :: Sample :: Search Feature</name>
 
-	<description></description>
+	<description>A sample search service.</description>
 
 	<properties>
 		<karaf.features.plugin.version>2.4.4</karaf.features.plugin.version>
@@ -29,8 +29,14 @@
 			<artifactId>igs-tc-search-bundle</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		
-		<!-- OSGi et. al. defined in profile 'karaf' of parent POM! -->
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-karaf-features</artifactId>
+			<version>${project.version}</version>
+			<classifier>features</classifier>
+			<type>xml</type>
+		</dependency>
 
 	</dependencies>
 
@@ -74,10 +80,14 @@
 				<groupId>org.apache.karaf.tooling</groupId>
 				<artifactId>karaf-maven-plugin</artifactId>
 				<extensions>true</extensions>
+				<configuration>
+					<markRuntimeScopeAsDependency>true</markRuntimeScopeAsDependency>
+					<!-- <aggregateFeatures>false</aggregateFeatures> -->
+				</configuration>
 				<executions>
 					<execution>
 						<id>verify-features</id>
-						<phase>process-resources</phase>
+						<phase>verify-features</phase>
 						<goals>
 							<goal>verify</goal>
 						</goals>
@@ -88,16 +98,6 @@
 							<features>
 								<feature>log</feature>
 							</features>
-							<!-- <enableGeneration>false</enableGeneration> -->
-							<!-- <aggregateFeatures>true</aggregateFeatures> -->
-							<!-- <markRuntimeScopeAsDependency>true</markRuntimeScopeAsDependency> -->
-							<!-- We must import trans. dep. because Jakarta libs not available in Karaf yet! -->
-							<!-- <includeTransitiveDependency>true</includeTransitiveDependency> -->
-							<!-- <includeProjectArtifact>true</includeProjectArtifact> -->
-							<!-- <failOnDependencyChange>false</failOnDependencyChange> -->
-							<!-- <checkDependencyChange>true</checkDependencyChange> -->
-							<!-- <logDependencyChanges>true</logDependencyChanges> -->
-							<!-- <overwriteChangedDependencies>true</overwriteChangedDependencies> -->
 						</configuration>
 					</execution>
 					<!-- Overwrite the KAR goal to prevent generation of feature.xml -->
@@ -109,7 +109,6 @@
 						</goals>
 						<configuration>
 							<featuresFile>${project.build.directory}/feature/feature.xml</featuresFile>
-							<enableGeneration>false</enableGeneration>
 						</configuration>
 					</execution>
 				</executions>

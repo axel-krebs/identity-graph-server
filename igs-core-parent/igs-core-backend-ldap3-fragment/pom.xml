@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs-core-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-core-backend-ldap3-fragment</artifactId>
+
+	<packaging>bundle</packaging>
+
+	<name>IGS :: Core :: LDAP</name>
+
+	<description>LDAP backend for the graph engine persistence.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>igs-core-bundle</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+		<finalName>IGS-Core-Backend-LDAP3</finalName>
+
+		<sourceDirectory>src/main/java</sourceDirectory>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>IGS-Core-LDAPv3</Bundle-SymbolicName>
+						<Fragment-Host>IGS-Core</Fragment-Host>
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
+							be used here.. -->
+						<Private-Package>de.akrebs.cloud.persistence.ldap3,</Private-Package>
+						<Export-Package>de.akrebs.cloud.identity.impl.ldap3.*
+						</Export-Package>
+						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

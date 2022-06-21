@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs-core-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-core-bundle</artifactId>
+
+	<packaging>bundle</packaging>
+
+	<name>IGS :: Core</name>
+
+	<description>A module that provides the main functionality, th.i. searching the identity graph.</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		
+	</dependencies>
+
+	<build>
+
+		<finalName>IGS-Core</finalName>
+
+		<sourceDirectory>src/main/java</sourceDirectory>
+
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Bundle-SymbolicName>IGS-Core</Bundle-SymbolicName>
+						<Bundle-Activator>de.akrebs.cloud.identity.impl.CoreBundleActivator</Bundle-Activator>
+						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
+						<Private-Package>de.akrebs.cloud.identity.impl</Private-Package>
+						<Export-Package>
+							de.akrebs.cloud.identity.api;version="${project.version}"
+						</Export-Package>
+						<Export-Service>de.akrebs.cloud.identity.api.IdentityService</Export-Service>
+					</instructions>
+				</configuration>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>

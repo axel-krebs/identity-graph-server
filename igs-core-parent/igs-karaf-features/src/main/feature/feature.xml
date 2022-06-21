@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0"
+	name="igs-karaf-features-${project.version}">
+
+	<repository>mvn:de.akrebs.cloud/igs-karaf-features/1.0.0/xml/features</repository>
+	<repository>mvn:org.ops4j.pax.web/pax-web-features/${pax.web.version}/xml/features</repository>
+	<repository>mvn:org.apache.cxf.karaf/apache-cxf/${karaf.cxf.version}/xml/features</repository>
+	<repository>mvn:org.apache.aries.cdi/aries-cdi-feature/${aries-cdi.version}/xml/features</repository>
+
+<feature name="igs-aries-jaxrs" version='${project.version}'>
+		<feature>pax-web-whiteboard</feature>
+		<feature>cxf-http</feature>
+		<feature>cxf-jaxrs</feature>
+		<feature>cxf-sse</feature>
+		<feature>osgi-cdi-owb</feature>
+		<bundle>mvn:org.osgi/org.osgi.util.function/${osgi.util.function.version}</bundle>
+		<bundle>mvn:org.osgi/org.osgi.util.promise/${osgi.util.promise.version}</bundle>
+		<bundle>mvn:org.osgi/org.osgi.service.http.whiteboard/${osgi.service.http.whiteboard.version}</bundle>
+		<bundle>mvn:org.osgi/org.osgi.service.jaxrs/${osgi.service.jaxrs.version}</bundle>
+		<bundle>mvn:org.apache.aries.spec/org.apache.aries.javax.jax.rs-api/1.0.1
+		</bundle>
+		<bundle>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.whiteboard/${aries.jax-rs.version}
+		</bundle>
+<!-- 		<bundle>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.rest.management/${aries.jax-rs.version} -->
+<!-- 		</bundle> -->
+		<bundle>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.jackson/1.0.0</bundle>
+		<bundle>mvn:org.apache.aries.component-dsl/org.apache.aries.component-dsl.component-dsl/1.2.2
+		</bundle>
+		<bundle>mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
+		<bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}
+		</bundle>
+		<bundle>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}
+		</bundle>
+		<bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-base/${jackson.version}
+		</bundle>
+		<bundle>mvn:com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider/${jackson.version}
+		</bundle>
+		<bundle>mvn:com.fasterxml.jackson.module/jackson-module-jaxb-annotations/${jackson.version}
+		</bundle>
+		<bundle>mvn:org.codehaus.woodstox/woodstox-core-asl/${woodstox.core-asl.version}</bundle>
+		<bundle>mvn:org.codehaus.woodstox/stax2-api/${woodstox.stax2-api.version}</bundle>
+		<bundle>mvn:com.fasterxml.woodstox/woodstox-core/${woodstox.version}</bundle>
+	</feature>
+	
+	<feature name='igs-master' version='${project.version}'>
+		<feature>igs-aries-jaxrs</feature>
+		<bundle>mvn:de.akrebs.cloud/igs-core-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-backend-bdb-fragment/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-core-backend-ldap3-fragment/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-oauth2-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-saml2-bundle/${project.version}</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-openid-connect-bundle/${project.version}
+		</bundle>
+		<bundle>mvn:de.akrebs.cloud/igs-wsfed-bundle/${project.version}</bundle>
+	</feature>
+
+	<feature name='igs-master-admin' version='${project.version}'>
+		<feature>igs-aries-jaxrs</feature>
+		<feature>osgi-cdi-owb-web</feature>
+		<feature>igs-master</feature>
+		<bundle>mvn:de.akrebs.cloud/igs-admin-bundle/${project.version}</bundle>
+	</feature>
+
+	<!-- <feature name='igs-mp-jakarta-ee' version='${project.version}'> -->
+	<!-- <bundle>mvn:jakarta.annotation/jakarta.annotation-api/${jakarta.annotation-api.version}</bundle> -->
+	<!-- <bundle>mvn:jakarta.el/jakarta.el-api/${jakarta.el-api.version}</bundle> -->
+	<!-- <bundle>mvn:jakarta.enterprise/jakarta.enterprise.cdi-api/${jakarta.enterprise.cdi-api.version} -->
+	<!-- </bundle> -->
+	<!-- <bundle>mvn:jakarta.enterprise/jakarta.enterprise.lang-model/${jakarta.enterprise.lang-model.version} -->
+	<!-- </bundle> -->
+	<!-- <bundle>mvn:jakarta.inject/jakarta.inject-api/${jakarta.inject-api.version}</bundle> -->
+	<!-- <bundle>mvn:jakarta.interceptor/jakarta.interceptor-api/${jakarta.interceptor-api.version} -->
+	<!-- </bundle> -->
+	<!-- <bundle>mvn:jakarta.json.bind/jakarta.json.bind-api/${jakarta.json.bind-api.version}</bundle> -->
+	<!-- <bundle>mvn:jakarta.json/jakarta.json-api/${jakarta.json-api.version}</bundle> -->
+	<!-- <bundle>mvn:jakarta.ws.rs/jakarta.ws.rs-api/${jakarta.ws.rs-api.version}</bundle> -->
+	<!-- </feature> -->
+
+</features>

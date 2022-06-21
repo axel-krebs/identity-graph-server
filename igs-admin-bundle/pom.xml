@@ -24,13 +24,31 @@
 
 	<dependencies>
 
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.cmpn</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
 
 		<!-- This will end up as 'SymbolicName' in the MANIFEST.MF -->
 		<finalName>IGS-Web-Admin</finalName>
-		
+
 		<sourceDirectory>src/main/java</sourceDirectory>
 
 		<plugins>
@@ -51,9 +69,9 @@
 					<instructions>
 						<Bundle-Activator>de.akrebs.cloud.identity.webadmin.impl.AdminBundleActivator</Bundle-Activator>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
-						<Private-Package>de.akrebs.cloud.web.impl</Private-Package>
+						<Private-Package>de.akrebs.cloud.identity.webadmin.impl</Private-Package>
 						<Export-Package>
-							de.akrebs.cloud.web.api;version="${project.version}"
+							de.akrebs.cloud.identity.webadmin.api;version="${project.version}"
 						</Export-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 					</instructions>

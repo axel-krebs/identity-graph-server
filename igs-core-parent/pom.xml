@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.akrebs.cloud</groupId>
+		<artifactId>igs</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>igs-core-parent</artifactId>
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>igs-core-bundle</module>
+		<module>igs-core-backend-bdb-fragment</module>
+		<module>igs-core-backend-ldap3-fragment</module>
+		<module>igs-oauth2-bundle</module>
+		<module>igs-openid-connect-bundle</module>
+		<module>igs-saml2-bundle</module>
+		<module>igs-wsfed-bundle</module>
+		<module>igs-karaf-features</module>
+	</modules>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.osgi</groupId>
+			<artifactId>osgi.cmpn</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+	
+</project>
