@@ -1,0 +1,9 @@
+{
+    ":configurator:resource-version" : 1,
+    ":configurator:symbolic-name" : "de.akrebs.cloud.sample.search.config",
+    ":configurator:version" : "1.0.0",
+    
+    "org.apache.aries.jax.rs.whiteboard.default" : {
+       
+    }
+}

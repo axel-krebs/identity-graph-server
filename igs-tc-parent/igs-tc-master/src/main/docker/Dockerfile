@@ -21,4 +21,4 @@ USER ${USER_NAME}
 #ENTRYPOINT ["/bin/bash","karaf & tail -f $KARAF_HOME/data/log"]
 CMD [ "/bin/bash", "-c", "tail -f /dev/null" ]
 
-EXPOSE 1099 5701 9990 8080 8081 44444
+EXPOSE 1099 5701 9990 8080 8181 44444

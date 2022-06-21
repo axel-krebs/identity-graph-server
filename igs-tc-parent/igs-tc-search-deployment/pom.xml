@@ -66,7 +66,7 @@
 			<type>xml</type>
 			<scope>runtime</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.apache.karaf.features</groupId>
 			<artifactId>enterprise</artifactId>
@@ -102,6 +102,26 @@
 
 		<!-- exclude version in artifact -->
 		<finalName>${project.artifactId}</finalName>
+		
+		<resources>
+
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+			<resource>
+				<directory>src/main/filtered-resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+		</resources>
 
 		<plugins>
 
@@ -164,8 +184,8 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<!-- OSGi Jetty runtime -->
-						<feature>pax-web-http-jetty</feature>
+						<!-- OSGi PAX HTTP runtime -->
+						<feature>pax-web-http-undertow</feature>
 
 						<!-- application -->
 						<feature>igs-tc-search</feature>
@@ -187,7 +207,7 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<bootFeature>pax-web-http-jetty</bootFeature>
+						<bootFeature>pax-web-http-undertow</bootFeature>
 
 						<bootFeature>igs-tc-search</bootFeature>
 

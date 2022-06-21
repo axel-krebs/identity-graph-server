@@ -104,6 +104,26 @@
 		<!-- exclude version in artifact -->
 		<finalName>${project.artifactId}</finalName>
 
+		<resources>
+
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+			<resource>
+				<directory>src/main/filtered-resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>**/*</include>
+				</includes>
+			</resource>
+
+		</resources>
+
 		<plugins>
 
 			<plugin>
@@ -175,7 +195,7 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<feature>pax-web-http-jetty</feature>
+						<feature>pax-web-http-undertow</feature>
 
 						<!-- application -->
 						<feature>igs-tc-analytics</feature>
@@ -191,7 +211,7 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<bootFeature>pax-web-http-jetty</bootFeature>
+						<bootFeature>pax-web-http-undertow</bootFeature>
 
 						<bootFeature>igs-tc-analytics</bootFeature>
 					</bootFeatures>
