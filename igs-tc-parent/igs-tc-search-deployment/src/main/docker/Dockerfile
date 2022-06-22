@@ -1,4 +1,4 @@
-FROM axel9691/open_jdk:811
+FROM axel9691/open_jdk:11
 LABEL Axel Krebs
 
 ARG ZIP_FILE_NAME
