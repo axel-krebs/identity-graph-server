@@ -215,8 +215,8 @@
 						<feature>pax-web-http-undertow</feature>
 
 						<!-- application -->
-						<feature>igs-tc-search</feature>
-
+<!-- 						<feature>igs-tc-search</feature> -->
+						<feature>igs-aries-jaxrs</feature>
 					</features>
 					<bootFeatures>
 
@@ -237,7 +237,8 @@
 						
 						<bootFeature>pax-web-http-undertow</bootFeature>
 
-						<bootFeature>igs-tc-search</bootFeature>
+<!-- 						<bootFeature>igs-tc-search</bootFeature> -->
+						<bootFeature>igs-aries-jaxrs</bootFeature>
 
 					</bootFeatures>
 

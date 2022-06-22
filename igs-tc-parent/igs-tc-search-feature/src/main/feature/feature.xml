@@ -12,7 +12,6 @@
 
 	<feature name='igs-tc-search' version='${project.version}'>
 		<bundle>mvn:de.akrebs.cloud/igs-tc-search-bundle/${project.version}</bundle>
-		<bundle>mvn:org.osgi/org.osgi.service.jaxrs/${osgi.service.jaxrs.version}</bundle>
 		<feature>igs-aries-jaxrs</feature>
 		<feature>cxf-http</feature>
 		<feature>cxf-http-async</feature>
@@ -21,8 +20,7 @@
 		<feature>cxf-sse</feature>
 		<feature>cxf-rs-description-openapi-v3</feature>
 		<feature>scr</feature>
-<!-- 		<feature>cxf-http-undertow</feature> -->
-		<feature>pax-web-http-undertow</feature>
+		<!-- <feature>cxf-http-undertow</feature> -->
 	</feature>
 
 </features>

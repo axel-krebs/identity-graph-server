@@ -12,6 +12,7 @@
 
 	<feature name="igs-aries-jaxrs" version='${project.version}'>
 		<feature>osgi-cdi-owb</feature>
+		<feature>pax-web-whiteboard</feature>
 		<bundle>mvn:org.osgi/org.osgi.util.function/${osgi.util.function.version}</bundle>
 		<bundle>mvn:org.osgi/org.osgi.util.promise/${osgi.util.promise.version}</bundle>
 		<bundle>mvn:org.osgi/org.osgi.service.jaxrs/${osgi.service.jaxrs.version}</bundle>
