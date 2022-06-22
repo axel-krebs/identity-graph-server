@@ -1,4 +1,4 @@
-package de.akrebs.cloud.identity.impl.ldap3;
+package de.akrebs.cloud.identity.ldap3.impl;
 
 import org.osgi.util.promise.Promise;
 

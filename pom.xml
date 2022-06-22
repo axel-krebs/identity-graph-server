@@ -71,9 +71,14 @@
 	</pluginRepositories>
 
 	<modules>
+	
 		<!-- Auth server -->
 		<module>igs-core-parent</module>
 		<module>igs-admin-bundle</module>
+		
+		<!-- Common module -->
+		<module>igs-micro-features</module>
+		
 		<!-- show case / test -->
 		<module>igs-tc-parent</module>
 	</modules>

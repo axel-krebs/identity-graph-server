@@ -20,7 +20,6 @@
 
 	<modules>
 		<module>igs-tc-master-deployment</module>
-		<module>igs-tc-micro-features</module>
 		<module>igs-tc-analytics-bundle</module>
 		<module>igs-tc-analytics-deployment</module>
 		<module>igs-tc-analytics-feature</module>
@@ -51,33 +50,32 @@
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi.core</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi.cmpn</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>osgi.enterprise</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.service.jaxrs</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
-
-		<!-- <dependency> -->
-		<!-- <groupId>javax.xml.parsers</groupId> -->
-		<!-- <artifactId>jaxp-api</artifactId> -->
-		<!-- <scope>provided</scope> -->
-		<!-- </dependency> -->
 		
 	</dependencies>
 

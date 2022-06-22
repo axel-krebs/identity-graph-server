@@ -50,8 +50,8 @@
 						<Fragment-Host>IGS-Core</Fragment-Host>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! Also, a BundleActivator cannot 
 							be used here.. -->
-						<Private-Package>de.akrebs.cloud.persistence.ldap3,</Private-Package>
-						<Export-Package>de.akrebs.cloud.identity.impl.ldap3.*
+						<Private-Package>de.akrebs.cloud.identity.ldap3.impl,</Private-Package>
+						<Export-Package>de.akrebs.cloud.identity.ldap3.api
 						</Export-Package>
 						<Bundle-Blueprint>OSGI-INF/blueprint/*.xml</Bundle-Blueprint>
 					</instructions>

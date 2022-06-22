@@ -54,7 +54,7 @@
 				<configuration>
 					<instructions>
 						<Import-Package>de.akrebs.cloud.identity.api;version="${project.version}",
-							org.slf4j;resolution:=mandatory;version:="[1.7,2)",
+							org.slf4j;resolution:=mandatory;version="[1.7,2)",
 						</Import-Package>
 						<!-- Nota bene: 'resources' package is NOT exported as OSGI public! -->
 						<Private-Package>de.akrebs.cloud.services.impl</Private-Package>

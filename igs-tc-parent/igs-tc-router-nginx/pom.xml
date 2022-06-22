@@ -11,6 +11,8 @@
 	</parent>
 
 	<artifactId>igs-tc-router-nginx</artifactId>
+	
+	<name>IGS :: Sample :: NGINX Router</name>
 
 	<build>
 
