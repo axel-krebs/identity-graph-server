@@ -96,7 +96,7 @@
 		<jakarta.servlet-api.version>4.0.4</jakarta.servlet-api.version>
 		<jakarta.ws.rs-api.version>3.1.0</jakarta.ws.rs-api.version>
 		<jakarta.xml.bind-api.version>4.0.0</jakarta.xml.bind-api.version>
-		<jackson.version>2.9.6</jackson.version>
+		<jackson.version>2.13.3</jackson.version>
 		<woodstox.version>6.2.8</woodstox.version>
 		<woodstox.stax2-api.version>4.2.1</woodstox.stax2-api.version>
 		<slf4j.api.version>1.7.36</slf4j.api.version>
@@ -132,7 +132,7 @@
 		<pax.cdi.version>1.1.4</pax.cdi.version>
 		<pax.jdbc.version>1.5.3</pax.jdbc.version>
 		<!-- not supported by Cellar HTTP-balancer! Draws-in Jetty v9.4.46.v20220331 -->
-		<pax.web.version>7.4.4</pax.web.version>
+		<pax.web.version>8.0.2</pax.web.version>
 		<pax.keycloak.version>0.2.0</pax.keycloak.version>
 		<sling.version>2.25.5</sling.version>
 		<shiro.version>1.9.0</shiro.version>
@@ -439,6 +439,20 @@
 			<!-- <version>1.1</version> -->
 			<!-- </dependency> -->
 
+			<!-- https://mvnrepository.com/artifact/org.apache.servicemix.specs/org.apache.servicemix.specs.jaxrs-api-2.1 -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.servicemix.specs</groupId> -->
+			<!-- <artifactId>org.apache.servicemix.specs.jaxrs-api-2.1</artifactId> -->
+			<!-- <version>2.9.1</version> -->
+			<!-- </dependency> -->
+
+			<!-- https://mvnrepository.com/artifact/org.apache.servicemix.specs/org.apache.servicemix.specs.jaxb-api-2.3 -->
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.servicemix.specs</groupId> -->
+			<!-- <artifactId>org.apache.servicemix.specs.jaxb-api-2.3</artifactId> -->
+			<!-- <version>2.3_3</version> -->
+			<!-- </dependency> -->
+
 			<!-- <dependency> -->
 			<!-- <groupId>org.apache.servicemix.specs</groupId> -->
 			<!-- <artifactId>org.apache.servicemix.specs.jaxrs-api-2.1</artifactId> -->
@@ -605,10 +619,9 @@
 
 			<dependency>
 				<groupId>org.ops4j.pax.cdi</groupId>
-				<artifactId>pax-cdi-api</artifactId>
-				<!-- <version>0.8.0</version> -->
-				<version>1.1.4</version>
-				<optional>true</optional>
+				<artifactId>pax-cdi-features</artifactId>
+				<version>${pax.cdi.version}</version>
+				<type>pom</type>
 			</dependency>
 
 			<dependency>

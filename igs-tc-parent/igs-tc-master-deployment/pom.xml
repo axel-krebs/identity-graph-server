@@ -10,7 +10,7 @@
 		<version>1.0.0</version>
 	</parent>
 
-	<artifactId>igs-tc-master</artifactId>
+	<artifactId>igs-tc-master-deployment</artifactId>
 
 	<packaging>karaf-assembly</packaging>
 
@@ -188,6 +188,8 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
+						<feature>pax-web-whiteboard</feature>
+
 						<!-- <feature>igs-master</feature> -->
 						<feature>igs-master-admin</feature>
 					</features>
@@ -203,7 +205,9 @@
 
 						<bootFeature>standard</bootFeature>
 						<bootFeature>transaction</bootFeature>
-						
+
+						<bootFeature>pax-web-whiteboard</bootFeature>
+
 						<!-- <bootFeature>igs-master</bootFeature> -->
 						<bootFeature>igs-master-admin</bootFeature>
 					</bootFeatures>

@@ -19,6 +19,10 @@
 	<description>Analytics service using the Karaf client feature.</description>
 
 	<properties>
+		<org.osgi.service.http.port>8181</org.osgi.service.http.port>
+		<org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+		<karaf.data>$KARAF_HOME/data</karaf.data>
+		<karaf.etc>$KARAF_HOME/etc</karaf.etc>
 	</properties>
 
 	<dependencies>
@@ -36,19 +40,10 @@
 
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-karaf-features</artifactId>
+			<artifactId>igs-tc-micro-features</artifactId>
 			<version>${project.version}</version>
 			<classifier>features</classifier>
 			<type>xml</type>
-		</dependency>
-
-		<dependency>
-			<groupId>${project.groupId}</groupId>
-			<artifactId>igs-karaf-features</artifactId>
-			<version>${project.version}</version>
-			<classifier>features</classifier>
-			<type>xml</type>
-			<scope>runtime</scope>
 		</dependency>
 
 		<!-- OSGi et. al. defined in parent POM -->
@@ -92,18 +87,26 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.ops4j.pax.web</groupId>
-			<artifactId>pax-web-features</artifactId>
-			<classifier>features</classifier>
-			<type>xml</type>
-			<scope>runtime</scope>
-		</dependency>
-
-		<dependency>
 			<groupId>org.apache.karaf</groupId>
 			<artifactId>org.apache.karaf.util</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.cxf.karaf</groupId> -->
+		<!-- <artifactId>apache-cxf</artifactId> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.ops4j.pax.web</groupId> -->
+		<!-- <artifactId>pax-web-features</artifactId> -->
+		<!-- <classifier>features</classifier> -->
+		<!-- <type>xml</type> -->
+		<!-- <scope>runtime</scope> -->
+		<!-- </dependency> -->
 
 	</dependencies>
 
@@ -128,6 +131,10 @@
 				<includes>
 					<include>**/*</include>
 				</includes>
+				<excludes>
+					<exclude>**/*.jks</exclude>
+					<exclude>**/*.truststore</exclude>
+				</excludes>
 			</resource>
 
 		</resources>
@@ -203,7 +210,8 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<feature>pax-web-http-undertow</feature>
+						<!-- <feature>pax-web-http-undertow</feature> -->
+						<!-- <feature>pax-web-whiteboard</feature> -->
 
 						<!-- application -->
 						<feature>igs-tc-analytics</feature>
@@ -219,14 +227,14 @@
 						<bootFeature>jaas-boot</bootFeature>
 						<bootFeature>jndi</bootFeature>
 
-						<bootFeature>pax-web-http-undertow</bootFeature>
-
 						<bootFeature>igs-tc-analytics</bootFeature>
+
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->
 
 					<blacklistedFeatures>
+						<blacklistedFeature>felix-http</blacklistedFeature>
 						<!-- <blacklistedFeature>pax-jdbc-spec</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-transx-tm</blacklistedFeature> -->
 						<!-- <blacklistedFeature>pax-jdbc</blacklistedFeature> -->
@@ -270,6 +278,10 @@
 									</includes>
 								</resource>
 							</resources>
+							<nonFilteredFileExtensions>
+								<nonFilteredFileExtension>jks</nonFilteredFileExtension>
+								<nonFilteredFileExtension>truststore</nonFilteredFileExtension>
+							</nonFilteredFileExtensions>
 						</configuration>
 					</execution>
 				</executions>

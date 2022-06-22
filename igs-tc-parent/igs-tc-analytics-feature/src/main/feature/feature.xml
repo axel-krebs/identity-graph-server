@@ -6,7 +6,7 @@
 
 	<feature name='igs-tc-analytics' version='${project.version}'>
 		<feature prerequisite="true">scr</feature>
-		<feature>igs-cxf-undertow</feature>
+		<feature>igs-aries-jaxrs</feature>
 		<bundle>mvn:de.akrebs.cloud/igs-tc-analytics-bundle/${project.version}</bundle>
 	</feature>
 

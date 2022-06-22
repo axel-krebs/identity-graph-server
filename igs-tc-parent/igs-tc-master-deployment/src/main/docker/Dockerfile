@@ -1,4 +1,4 @@
-FROM axel9691/openjdk:11
+FROM axel9691/open_jdk:11
 
 LABEL Axel Krebs
 
@@ -15,6 +15,7 @@ RUN ./install.sh ${ZIP_FILE_NAME} ${USER_NAME} ${PASS_WORD}
 
 # Since this is a post-Java 9 JDK, Hazelcast needs some access rights..
 ENV JAVA_OPTS="--add-modules java.se --add-exports java.base/jdk.internal.ref=ALL-UNNAMED --add-opens java.base/java.lang=ALL-UNNAMED --add-opens java.base/java.nio=ALL-UNNAMED --add-opens java.base/sun.nio.ch=ALL-UNNAMED --add-opens java.management/sun.management=ALL-UNNAMED --add-opens jdk.management/com.sun.management.internal=ALL-UNNAMED"
+ENV JETTY_ARGS="jetty.port=8080 jetty.spdy.port=8443 jetty.secure.port=443"
 
 USER ${USER_NAME}
 

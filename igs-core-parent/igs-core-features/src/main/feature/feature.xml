@@ -4,8 +4,8 @@
 
 	<repository>mvn:org.ops4j.pax.web/pax-web-features/${pax.web.version}/xml/features</repository>
 	<!-- <repository>mvn:org.apache.cxf.karaf/apache-cxf/${karaf.cxf.version}/xml/features</repository> -->
-	<!-- <repository>mvn:org.apache.aries.cdi/aries-cdi-feature/${aries-cdi.version}/xml/features -->
-	<!-- </repository> -->
+	<repository>mvn:org.apache.aries.cdi/aries-cdi-feature/${aries-cdi.version}/xml/features
+	</repository>
 
 	<feature name='igs-jakartee-api' version='${project.version}'>
 		<bundle>mvn:jakarta.annotation/jakarta.annotation-api/${jakarta.annotation-api.version}</bundle>
@@ -25,8 +25,9 @@
 	<!-- The 'domain controller' -->
 	<feature name='igs-master' version='${project.version}'>
 		<feature>igs-jakartee-api</feature>
-		<feature>pax-http</feature>
-		<!-- <feature>osgi-cdi-owb-web</feature> -->
+		<feature>pax-web-http-jetty</feature>
+		<featrue>pax-web-whiteboard</featrue>
+		<feature>osgi-cdi-owb-web</feature>
 		<bundle>mvn:de.akrebs.cloud/igs-core-bundle/${project.version}</bundle>
 		<bundle>mvn:de.akrebs.cloud/igs-core-backend-bdb-fragment/${project.version}
 		</bundle>
@@ -42,6 +43,7 @@
 	<!-- The cloud directory server with admin frontend -->
 	<feature name='igs-master-admin' version='${project.version}'>
 		<feature>igs-master</feature>
+		<feature>pax-web-war</feature>
 		<bundle>mvn:de.akrebs.cloud/igs-admin-bundle/${project.version}</bundle>
 	</feature>
 
