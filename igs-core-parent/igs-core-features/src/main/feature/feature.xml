@@ -24,9 +24,7 @@
 
 	<!-- The 'domain controller' -->
 	<feature name='igs-master' version='${project.version}'>
-		<feature>igs-jakartee-api</feature>
 		<feature>pax-web-http-jetty</feature>
-		<featrue>pax-web-whiteboard</featrue>
 		<feature>osgi-cdi-owb-web</feature>
 		<bundle>mvn:de.akrebs.cloud/igs-core-bundle/${project.version}</bundle>
 		<bundle>mvn:de.akrebs.cloud/igs-core-backend-bdb-fragment/${project.version}

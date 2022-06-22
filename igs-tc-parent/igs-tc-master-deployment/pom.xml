@@ -17,6 +17,13 @@
 	<name>IGS :: Sample :: Master</name>
 
 	<description>Authentication and Authorization Server.</description>
+	
+	<properties>
+		<karaf.etc>/opt/${project.artifactId}-${project.version}/etc</karaf.etc>
+		<karaf.data>/opt/${project.artifactId}-${project.version}/data</karaf.data>
+		<org.osgi.service.http.port>8181</org.osgi.service.http.port>
+		<org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+	</properties>
 
 	<dependencies>
 
@@ -108,6 +115,10 @@
 				<includes>
 					<include>**/*</include>
 				</includes>
+				<excludes>
+					<exclude>**/*.jks</exclude>
+					<exclude>**/*.truststore</exclude>
+				</excludes>
 			</resource>
 
 		</resources>
@@ -188,10 +199,9 @@
 						<!-- <feature>hibernate</feature> -->
 						<!-- <feature>eclipselink</feature> -->
 
-						<feature>pax-web-whiteboard</feature>
-
 						<!-- <feature>igs-master</feature> -->
 						<feature>igs-master-admin</feature>
+						
 					</features>
 					<bootFeatures>
 
@@ -206,10 +216,9 @@
 						<bootFeature>standard</bootFeature>
 						<bootFeature>transaction</bootFeature>
 
-						<bootFeature>pax-web-whiteboard</bootFeature>
-
 						<!-- <bootFeature>igs-master</bootFeature> -->
 						<bootFeature>igs-master-admin</bootFeature>
+						
 					</bootFeatures>
 
 					<!-- Features NOT to be distributed in the cluster -->

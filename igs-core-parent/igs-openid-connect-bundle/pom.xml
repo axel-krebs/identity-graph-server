@@ -14,7 +14,7 @@
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Service :: OpenID Connect</name>
+	<name>IGS :: Core :: Service :: OpenID Connect</name>
 
 	<description>Provide OpenID Connect compatible authentication service.</description>
 

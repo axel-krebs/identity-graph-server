@@ -14,7 +14,7 @@
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Service :: WS Federation</name>
+	<name>IGS :: Core :: Service :: WS Federation</name>
 
 	<description>Provide WS-Federation compatible authentication service.</description>
 

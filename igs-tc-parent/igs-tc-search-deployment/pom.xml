@@ -19,6 +19,10 @@
 	<description>Search service using the Karaf client feature.</description>
 
 	<properties>
+		<karaf.etc>/opt/${project.artifactId}-${project.version}/etc</karaf.etc>
+		<karaf.data>/opt/${project.artifactId}-${project.version}/data</karaf.data>
+		<org.osgi.service.http.port>8181</org.osgi.service.http.port>
+		<org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
 	</properties>
 
 	<dependencies>
@@ -126,7 +130,7 @@
 				<directory>src/main/resources</directory>
 				<filtering>false</filtering>
 				<includes>
-					<include>**/*</include>
+					<include>**/**</include>
 				</includes>
 			</resource>
 
@@ -232,9 +236,6 @@
 
 						<feature>osgi-cdi-owb</feature>
 
-						<feature>pax-web-whiteboard</feature>
-						<feature>pax-web-http-undertow</feature>
-
 						<!-- <feature>cxf-http</feature> -->
 						<!-- <feature>cxf-http-async</feature> -->
 						<feature>cxf-jackson</feature>
@@ -243,8 +244,10 @@
 						<feature>cxf-sse</feature>
 						<feature>cxf-rs-description-openapi-v3</feature>
 
+						<feature>pax-web-http-undertow</feature>
+						<feature>pax-web-whiteboard</feature>
+
 						<!-- application -->
-						<feature>igs-aries-jaxrs</feature>
 						<feature>igs-tc-search</feature>
 
 					</features>
@@ -278,7 +281,6 @@
 						<bootFeature>pax-web-http-undertow</bootFeature>
 						<bootFeature>pax-web-whiteboard</bootFeature>
 
-						<bootFeature>igs-aries-jaxrs</bootFeature>
 						<bootFeature>igs-tc-search</bootFeature>
 
 					</bootFeatures>

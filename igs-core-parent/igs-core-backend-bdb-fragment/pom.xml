@@ -14,7 +14,7 @@
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Core :: Berkley JE</name>
+	<name>IGS :: Core :: Backend :: Berkley JE</name>
 
 	<description>BerkleyDB JE backend for the graph engine persistence..</description>
 

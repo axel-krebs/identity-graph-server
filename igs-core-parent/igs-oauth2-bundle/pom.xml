@@ -14,7 +14,7 @@
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Service :: OAuth2</name>
+	<name>IGS :: Core :: Service :: OAuth2</name>
 
 	<description>Provide OAuth 2.0 compatible authentication service.</description>
 

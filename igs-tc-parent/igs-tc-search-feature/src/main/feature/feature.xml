@@ -2,7 +2,7 @@
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.5.0"
 	name="igs-search-features-${project.version}">
 
-	<!-- <repository>mvn:org.apache.cxf.karaf/apache-cxf/${karaf.cxf.version}/xml/features</repository> -->
+	<repository>mvn:org.apache.cxf.karaf/apache-cxf/${karaf.cxf.version}/xml/features</repository>
 	<!-- <repository>mvn:org.ops4j.pax.web/pax-web-features/${pax.web.version}/xml/features</repository> -->
 	<!-- <repository>mvn:org.apache.aries.jax.rs/org.apache.aries.jax.rs.features/${aries.jax-rs.version}/xml -->
 	<!-- </repository> -->
@@ -11,8 +11,7 @@
 	<feature name='igs-tc-search' version='${project.version}'>
 		<bundle start-level="100">mvn:de.akrebs.cloud/igs-tc-search-bundle/${project.version}</bundle>
 		<feature prerequisite="true">scr</feature>
-		<!-- <feature>cxf-http-undertow</feature> -->
-		<feature>igs-aries-jaxrs</feature>
+		<feature prerequisite="true">igs-aries-jaxrs</feature>
 	</feature>
 
 </features>

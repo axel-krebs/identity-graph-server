@@ -14,7 +14,7 @@
 
 	<packaging>bundle</packaging>
 
-	<name>IGS :: Core :: LDAP</name>
+	<name>IGS :: Core :: Backend :: LDAP-3</name>
 
 	<description>LDAP backend for the graph engine persistence.</description>
 

@@ -21,8 +21,8 @@
 	<properties>
 		<org.osgi.service.http.port>8181</org.osgi.service.http.port>
 		<org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
-		<karaf.data>$KARAF_HOME/data</karaf.data>
-		<karaf.etc>$KARAF_HOME/etc</karaf.etc>
+		<karaf.etc>/opt/${project.artifactId}-${project.version}/etc</karaf.etc>
+		<karaf.data>/opt/${project.artifactId}-${project.version}/data</karaf.data>
 	</properties>
 
 	<dependencies>
